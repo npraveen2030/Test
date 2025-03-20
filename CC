@@ -1,0 +1,41 @@
+using (var context = new YourDbContext())
+{
+    // Fetch data from CustomerData & Models with INNER JOIN and filtering by ModelID
+    var customerDataList = context.CustomerData
+        .Join(context.Models, 
+              c => c.Id, 
+              m => m.CustomerId, 
+              (c, m) => new { Customer = c, Model = m })
+        .Where(joined => joined.Model.Id == modelID) // Apply WHERE condition
+        .Select(joined => new CustomerData
+        {
+            CustomerName = joined.Customer.CustomerName,
+            CustomerAddress1 = joined.Customer.CustomerAddress1,
+            CustomerAddress2 = joined.Customer.CustomerAddress2,
+            CustomerAddress3 = joined.Customer.CustomerAddress3,
+            OfficerName = joined.Customer.OfficerName,
+            OfficerNumber = joined.Customer.OfficerNumber,
+            RNumber = joined.Customer.RNumber,
+            SalesChannel = joined.Customer.SalesChannel,
+            TMSO = joined.Customer.TMSO,
+            AccountWaive = joined.Customer.AccountWaive,
+            BillingMethod = joined.Customer.BillingMethod,
+            AnnualSales = joined.Customer.AnnualSales,
+            Comments = joined.Customer.Comments,
+            Market = joined.Customer.Market,
+            CurrentPricingWaived = joined.Customer.CurrentPricingWaived,
+            ProposedPricingWaived = joined.Customer.ProposedPricingWaived,
+            Region = joined.Customer.Region ?? "" // ISNULL(region, '')
+        })
+        .ToList(); // Execute query and fetch results
+
+    if (customerDataList.Any()) // Check if records exist before inserting
+    {
+        context.CustomerData.AddRange(customerDataList); // Bulk insert
+        context.SaveChanges(); // Commit changes to the database
+
+        // Retrieve the last inserted ID (SCOPE_IDENTITY equivalent)
+        var lastInsertedId = customerDataList.LastOrDefault()?.Id;
+        Console.WriteLine($"Inserted Record ID: {lastInsertedId}");
+    }
+}
