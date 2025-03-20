@@ -1,0 +1,23 @@
+using (var context = new YourDbContext())
+{
+    // Create a new Models entity
+    var newModel = new Models
+    {
+        CustomerId = customerID,
+        LastUpdated = DateTime.Now, // Equivalent to 'Now' in VB.NET
+        UserId = userID,
+        Status = 1, // Hardcoded as per the SQL query
+        UserName = userName.Replace("*", "**"), // Replace * with **
+        CreatedDate = DateTime.Now, // Equivalent to 'Now' in VB.NET
+        ModelType = modelType
+    };
+
+    // Insert into Models table
+    context.Models.Add(newModel);
+    context.SaveChanges(); // Save changes to the database
+
+    // Retrieve the last inserted ID (SCOPE_IDENTITY equivalent)
+    int lastInsertedId = newModel.Id; // Assuming 'Id' is the primary key
+
+    Console.WriteLine($"Inserted Record ID: {lastInsertedId}");
+}
