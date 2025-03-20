@@ -1,0 +1,41 @@
+using (var context = new YourDbContext())
+{
+    // Fetch the source record from CurrentAnalysisData based on SourceAnalysisID
+    var sourceAnalysis = context.CurrentAnalysisData
+        .Where(a => a.Id == sourceAnalysisID)
+        .Select(a => new CurrentAnalysisData
+        {
+            Id = analysisID, // Assign the new Analysis ID
+            ModelId = newModelID, // Assign the new Model ID
+            CustomerName = a.CustomerName,
+            PositiveCollectedBalance = a.PositiveCollectedBalance,
+            NegativeCollectedBalance = a.NegativeCollectedBalance,
+            ECR = a.ECR,
+            NegCollectedRate = a.NegCollectedRate,
+            NoOfAccounts = a.NoOfAccounts,
+            KeyAccount = a.KeyAccount,
+            Include = a.Include,
+            AvgLedgerBalance = a.AvgLedgerBalance,
+            AvgCollectedBalance = a.AvgCollectedBalance,
+            ExceptionSetName = a.ExceptionSetName,
+            ExceptionExpiration = a.ExceptionExpiration,
+            DaysInMonth = a.DaysInMonth,
+            DaysInYear = a.DaysInYear,
+            StmtMonth = a.StmtMonth,
+            StmtYear = a.StmtYear,
+            ChargeClass = a.ChargeClass,
+            StartMonth = a.StartMonth,
+            EndMonth = a.EndMonth,
+            CurrentPricingWaived = a.CurrentPricingWaived,
+            BillingMethod = a.BillingMethod
+        })
+        .FirstOrDefault(); // Get the first matching record
+
+    if (sourceAnalysis != null) // Ensure there is a record to insert
+    {
+        context.CurrentAnalysisData.Add(sourceAnalysis); // Insert the new record
+        context.SaveChanges(); // Save changes to the database
+
+        Console.WriteLine($"Inserted Record with ID: {sourceAnalysis.Id}");
+    }
+}
