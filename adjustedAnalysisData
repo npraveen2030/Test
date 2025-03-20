@@ -1,0 +1,41 @@
+using (var context = new YourDbContext())
+{
+    var adjustedAnalysisData = context.AdjustedAnalysisData
+        .Where(a => a.ModelId == modelID) // WHERE modelid = @ModelID
+        .Select(a => new
+        {
+            a.Id,
+            a.CustomerName,
+            a.PositiveCollectedBalance,
+            a.NegativeCollectedBalance,
+            a.ECR,
+            a.NegCollectedRate,
+            a.NoOfAccounts,
+            a.KeyAccount,
+            a.Include,
+            a.AvgLedgerBalance,
+            a.AvgCollectedBalance,
+            a.ExceptionSetName,
+            a.ExceptionExpiration,
+            a.DaysInMonth,
+            a.DaysInYear,
+            a.StmtMonth,
+            a.StmtYear,
+            a.UseStandardECR,
+            a.DiscountAmount,
+            a.SetToStandard,
+            a.ChargeClass,
+            a.StartMonth,
+            a.EndMonth,
+            a.CurrentPricingWaived,
+            a.ProposedPricingWaived,
+            a.BillingMethod
+        })
+        .ToList(); // Execute the query and return the result as a list
+
+    // Process the results if needed
+    foreach (var record in adjustedAnalysisData)
+    {
+        Console.WriteLine($"ID: {record.Id}, Customer: {record.CustomerName}, Balance: {record.AvgCollectedBalance}");
+    }
+}
