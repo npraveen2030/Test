@@ -1,0 +1,61 @@
+using (var context = new YourDbContext())
+{
+    // Fetch the first record that matches the given ModelID
+    var modelAnalysis = context.ModelAnalysisData
+        .Where(m => m.ModelId == modelID) // Apply WHERE condition
+        .OrderBy(m => m.ModelId) // Ensure we get the TOP 1 record
+        .Select(m => new ModelAnalysisData
+        {
+            ModelId = newModelID, // Assign the new model ID
+            CustomerName = m.CustomerName,
+            PositiveCollectedBalance = m.PositiveCollectedBalance,
+            NegativeCollectedBalance = m.NegativeCollectedBalance,
+            ECR = m.ECR,
+            NegCollectedRate = m.NegCollectedRate,
+            NoOfAccounts = m.NoOfAccounts,
+            KeyAccount = m.KeyAccount,
+            Include = m.Include,
+            ExceptionSetName = m.ExceptionSetName,
+            ExceptionExpiration = m.ExceptionExpiration,
+            AvgLedgerBalance = m.AvgLedgerBalance,
+            AvgCollectedBalance = m.AvgCollectedBalance,
+            DaysInMonth = m.DaysInMonth,
+            DaysInYear = m.DaysInYear,
+            StmtMonth = m.StmtMonth,
+            StmtYear = m.StmtYear,
+            UseStandardECR = m.UseStandardECR,
+            DiscountAmount = m.DiscountAmount,
+            SetToStandard = m.SetToStandard,
+            ChargeClass = m.ChargeClass,
+            CurrentPricingWaived = m.CurrentPricingWaived,
+            ProposedPricingWaived = m.ProposedPricingWaived,
+            ContractPricing = m.ContractPricing,
+            ContractStart = m.ContractStart,
+            ContractEnd = m.ContractEnd,
+            BillingMethod = m.BillingMethod,
+            ProductCode = m.ProductCode,
+            StartMonth = m.StartMonth,
+            EndMonth = m.EndMonth,
+            Tier = m.Tier,
+            RAROC = m.RAROC,
+            ApprovalDoc = m.ApprovalDoc,
+            AnalysisDoc = m.AnalysisDoc,
+            Comments = m.Comments,
+            ApprovalXML = m.ApprovalXML,
+            ServicesXML = m.ServicesXML,
+            SummaryPDF = m.SummaryPDF,
+            ServicesColumns = m.ServicesColumns,
+            ProposalEffectiveDate = m.ProposalEffectiveDate,
+            ProposalExpirationDate = m.ProposalExpirationDate,
+            KeyAccounts = m.KeyAccounts,
+            ImplementationInstructions = m.ImplementationInstructions,
+            CampaignId = m.CampaignId
+        })
+        .FirstOrDefault(); // Retrieve the first matching record
+
+    if (modelAnalysis != null) // Ensure we have data to insert
+    {
+        context.ModelAnalysisData.Add(modelAnalysis); // Insert new record
+        context.SaveChanges(); // Save changes to the database
+    }
+}
