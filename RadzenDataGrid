@@ -1,0 +1,35 @@
+@page "/service"
+
+@using Radzen
+@using Radzen.Blazor
+
+<h3>Balance and Pricing Information</h3>
+
+<RadzenDataGrid TItem="ServiceModel" Data="@serviceData" ColumnWidth="200px" AllowPaging="true" AllowSorting="true" AllowFiltering="true" RowSelect="OnRowSelect">
+    <Columns>
+        <RadzenDataGridColumn TItem="ServiceModel" Width="50px">
+            <Template Context="data">
+                <input type="checkbox" bind="@data.IsSelected" />
+            </Template>
+        </RadzenDataGridColumn>
+        <RadzenDataGridColumn TItem="ServiceModel" Property="KeyAccount" Title="Key Account" />
+        <RadzenDataGridColumn TItem="ServiceModel" Property="NoOfAccounts" Title="No. of Accounts" />
+        <RadzenDataGridColumn TItem="ServiceModel" Property="CustomerName" Title="Customer Name" />
+        <RadzenDataGridColumn TItem="ServiceModel" Property="BillingMethod" Title="Billing Method">
+            <Template Context="data">
+                <RadzenDropDown TValue="string" @bind-Value="data.BillingMethod" Data="@billingMethods" />
+            </Template>
+        </RadzenDataGridColumn>
+        <RadzenDataGridColumn TItem="ServiceModel" Property="CHTType" Title="CHT Type">
+            <Template Context="data">
+                <RadzenDropDown TValue="string" @bind-Value="data.CHTType" Data="@chtTypes" />
+            </Template>
+        </RadzenDataGridColumn>
+        <RadzenDataGridColumn TItem="ServiceModel" Property="ExceptionSetName" Title="Exception Set Name">
+            <Template Context="data">
+                <RadzenDropDown TValue="string" @bind-Value="data.ExceptionSetName" Data="@exceptionNames" />
+            </Template>
+        </RadzenDataGridColumn>
+        <RadzenDataGridColumn TItem="ServiceModel" Property="RateChangeType" Title="Rate Change Type" />
+    </Columns>
+</RadzenDataGrid>
