@@ -1,0 +1,59 @@
+@page "/service"
+
+@using Radzen.Blazor
+
+<h2 class="header">Balance and Pricing Information</h2>
+
+<div class="row">
+    <div class="col">
+        <input type="checkbox" id="solidProduct" /> <label for="solidProduct">Solid Product Only</label>
+        <input type="checkbox" id="competitorPrice" /> <label for="competitorPrice">Show Competitor Price</label>
+        <button>Add Service</button>
+        <button>Reset to Initial Values</button>
+        <button>Print</button>
+        <button>Update Unit Pricing</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-2">
+        <RadzenDropDown TValue="string" @bind-Value="SelectedProduct" Data="ProductOptions" TextProperty="Text" ValueProperty="Value" Filterable="true" />
+    </div>
+    <div class="col-6">
+        <RadzenDataGrid TItem="SubProductModel" Data="FilteredSubProducts" AllowPaging="true" PageSize="10" AllowSorting="true">
+            <Columns>
+                <RadzenDataGridColumn TItem="SubProductModel" Property="Element" Title="Element" />
+                <RadzenDataGridColumn TItem="SubProductModel" Property="LongName" Title="Long Name" />
+                <RadzenDataGridColumn TItem="SubProductModel" Property="StandardPrice" Title="Standard Price" />
+                <RadzenDataGridColumn TItem="SubProductModel" Property="Cost" Title="Cost" />
+                <RadzenDataGridColumn TItem="SubProductModel" Property="AfpCode" Title="AFP Code" />
+                <RadzenDataGridColumn TItem="SubProductModel" Property="UnitPrice" Title="Unit Price" />
+                <RadzenDataGridColumn TItem="SubProductModel" Property="Volume" Title="Volume" />
+                <RadzenDataGridColumn TItem="SubProductModel" Property="CompPrice" Title="Comp Price" />
+                <RadzenDataGridColumn TItem="SubProductModel" Property="ElementId" Title="Element ID" />
+                <RadzenDataGridColumn TItem="SubProductModel" Property="Tier1Volume" Title="Tier 1 Volume" />
+                <RadzenDataGridColumn TItem="SubProductModel" Property="Tier2Price" Title="Tier 2 Price" />
+                <RadzenDataGridColumn TItem="SubProductModel" Property="Tier2Volume" Title="Tier 2 Volume" />
+                <RadzenDataGridColumn TItem="SubProductModel" Property="Tier3Price" Title="Tier 3 Price" />
+                <RadzenDataGridColumn TItem="SubProductModel" Property="ChargeClass" Title="Charge Class" />
+                <RadzenDataGridColumn TItem="SubProductModel" Property="TieredType" Title="Tiered Type" />
+                <RadzenDataGridColumn TItem="SubProductModel" Property="Tier1Price" Title="Tier 1 Price" />
+                <RadzenDataGridColumn TItem="SubProductModel" Property="KeyAccount" Title="Key Account" />
+                <RadzenDataGridColumn TItem="SubProductModel" Property="AnalysisId" Title="Analysis ID" />
+                <RadzenDataGridColumn TItem="SubProductModel" Property="CampaignId" Title="Campaign ID" />
+                <RadzenDataGridColumn TItem="SubProductModel" Property="AlwaysShow" Title="Always Show" />
+                <RadzenDataGridColumn TItem="SubProductModel" Property="PcdElement" Title="PCD Element" />
+                <RadzenDataGridColumn TItem="SubProductModel" Property="BillingMethod" Title="Billing Method" />
+                <RadzenDataGridColumn TItem="SubProductModel" Property="Description" Title="Description" />
+                <RadzenDataGridColumn TItem="SubProductModel" Property="Setup" Title="Setup" />
+            </Columns>
+        </RadzenDataGrid>
+    </div>
+</div>
+
+@code {
+    private string SelectedProduct;
+    private List<KeyValuePair<string, string>> ProductOptions = new();
+    private List<SubProductModel> SubProducts = new();
+    private List<SubProductModel> FilteredSubProducts => SubProducts.Where(sp => sp.ProductId == SelectedProduct).ToList();
+}
