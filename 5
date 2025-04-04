@@ -1,0 +1,31 @@
+using Microsoft.AspNetCore.Components;
+using Radzen;
+
+namespace YourApp.Pages
+{
+    public partial class ServiceBase : ComponentBase
+    {
+        protected List<Employee> employees = new()
+        {
+            new Employee { Name = "Alice", Age = 28, Salary = 50000 },
+            new Employee { Name = "Bob", Age = 35, Salary = 60000 },
+            new Employee { Name = "Charlie", Age = 45, Salary = 70000 },
+            new Employee { Name = "Diana", Age = 25, Salary = 48000 }
+        };
+
+        protected void OnRowRender(RowRenderEventArgs<Employee> args)
+        {
+            if (args.Data.Age > 30)
+            {
+                args.Attributes["style"] = "background-color: lightpink;";
+            }
+        }
+
+        public class Employee
+        {
+            public string Name { get; set; }
+            public int Age { get; set; }
+            public decimal Salary { get; set; }
+        }
+    }
+}
