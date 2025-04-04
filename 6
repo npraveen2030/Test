@@ -1,0 +1,8 @@
+protected void OnRowRender(RowRenderEventArgs<Employee> args)
+{
+    if (args.Data.Age > 30)
+    {
+        var existingClass = args.Attributes.ContainsKey("class") ? args.Attributes["class"] : string.Empty;
+        args.Attributes["class"] = $"{existingClass} highlight-row".Trim();
+    }
+}
