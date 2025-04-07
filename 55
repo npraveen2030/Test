@@ -1,0 +1,13 @@
+var result = rates
+    .Where(rate => rate.InterestType == accountType && rate.CampaignId == campaignId)
+    .Join(campaigns.Where(c => c.IsActive),
+          rate => rate.CampaignId,
+          campaign => campaign.Id,
+          (rate, campaign) => new 
+          {
+              campaign.CampaignName,
+              campaign.Id,
+              rate.CampaignId
+          })
+    .Distinct()
+    .ToList();
