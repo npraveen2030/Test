@@ -1,0 +1,60 @@
+var approvals = new List<ApprovalsForProposal>
+{
+    new ApprovalsForProposal
+    {
+        TMSO = "John Doe",
+        TMSOemail = "john.doe@example.com",
+        TMSOID = "JD123",
+        Market = "East",
+        AnnualSales = "1M",
+        Manager = "Jane Smith",
+        ManagerId = "JS001",
+        ManagerEmail = "jane.smith@example.com",
+        BillingMethod = "Monthly Billed",
+        MetGoals = true,
+        NeedTier1 = false,
+        OfficerName = "Mike Officer",
+        Comments = "All good.",
+        AccountWaive = 0,
+        Instructions = "Review and approve",
+        OfficerNumber = "OFF123",
+        CustomerName = "Acme Corp",
+        KeyAccounts = "KA001",
+        Status = 1,
+        ModelID = "100823",
+        Tier = 1,
+        ProposedPricingWaived = 0,
+        Interest = true,
+        Pricing = false
+    },
+    new ApprovalsForProposal
+    {
+        TMSO = "Alice Brown",
+        TMSOemail = "alice.brown@example.com",
+        TMSOID = "AB456",
+        Market = "West",
+        AnnualSales = "2M",
+        Manager = "Bob Lee",
+        ManagerId = "BL002",
+        ManagerEmail = "bob.lee@example.com",
+        BillingMethod = "Quarterly Direct Debit",
+        MetGoals = false,
+        NeedTier1 = true,
+        OfficerName = "Sarah Officer",
+        Comments = "Pending review.",
+        AccountWaive = 1,
+        Instructions = "Escalate to management",
+        OfficerNumber = "OFF456",
+        CustomerName = "Beta LLC",
+        KeyAccounts = "KA002",
+        Status = 0,
+        ModelID = "103743",
+        Tier = 2,
+        ProposedPricingWaived = 1,
+        Interest = false,
+        Pricing = true
+    }
+};
+
+// Example LINQ query
+var filtered = approvals.Where(a => a.MetGoals && a.Tier == 1).ToList();
