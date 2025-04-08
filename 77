@@ -1,0 +1,69 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace ProposalApp
+{
+    public class ApprovalsForProposal
+    {
+        public int Id { get; set; }
+        public int ModelId { get; set; }
+        public string ProductGroup { get; set; }
+        public decimal CurrentRate { get; set; }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Sample Data - 4 Records
+            var approvalsList = new List<ApprovalsForProposal>
+            {
+                new ApprovalsForProposal
+                {
+                    Id = 1,
+                    ModelId = 1001,
+                    ProductGroup = "Auto Loans",
+                    CurrentRate = 4.75m
+                },
+                new ApprovalsForProposal
+                {
+                    Id = 2,
+                    ModelId = 1002,
+                    ProductGroup = "Home Loans",
+                    CurrentRate = 3.95m
+                },
+                new ApprovalsForProposal
+                {
+                    Id = 3,
+                    ModelId = 1003,
+                    ProductGroup = "Personal Loans",
+                    CurrentRate = 5.25m
+                },
+                new ApprovalsForProposal
+                {
+                    Id = 4,
+                    ModelId = 1004,
+                    ProductGroup = "Credit Cards",
+                    CurrentRate = 6.10m
+                }
+            };
+
+            // Lambda Expression to Get a Record by ModelId
+            int targetModelId = 1002;
+
+            var result = approvalsList.FirstOrDefault(p => p.ModelId == targetModelId);
+
+            if (result != null)
+            {
+                Console.WriteLine($"Found: ID={result.Id}, ProductGroup={result.ProductGroup}, Rate={result.CurrentRate}");
+            }
+            else
+            {
+                Console.WriteLine("ModelId not found.");
+            }
+
+            Console.ReadLine();
+        }
+    }
+}
