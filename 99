@@ -1,0 +1,14 @@
+public static class StringExtensions
+{
+    public static decimal ToDecimalWithoutDollar(this string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+            return 0;
+
+        // Remove dollar sign and trim whitespace
+        string clean = value.Replace("$", "").Trim();
+
+        // Try parsing to decimal
+        return decimal.TryParse(clean, out decimal result) ? result : 0;
+    }
+}
