@@ -1,0 +1,61 @@
+@page "/datatable-grid"
+@using System.Data
+@using System.Dynamic
+@using Radzen
+@using Radzen.Blazor
+
+<h3>DataTable to RadzenDataGrid Example</h3>
+
+<RadzenDataGrid @ref="myGrid" Data="@dynamicData" TItem="ExpandoObject" ColumnWidth="200px">
+    <Columns>
+        @if (dynamicData != null && dynamicData.Any())
+        {
+            foreach (var key in ((IDictionary<string, object>)dynamicData.First()).Keys)
+            {
+                <RadzenDataGridColumn TItem="ExpandoObject" Property="@key" Title="@key" />
+            }
+        }
+    </Columns>
+</RadzenDataGrid>
+
+@code {
+    private RadzenDataGrid<ExpandoObject> myGrid;
+    private List<ExpandoObject> dynamicData;
+
+    protected override void OnInitialized()
+    {
+        var dataTable = GetSampleDataTable();
+        dynamicData = ConvertDataTableToExpando(dataTable);
+    }
+
+    private List<ExpandoObject> ConvertDataTableToExpando(DataTable dt)
+    {
+        var list = new List<ExpandoObject>();
+
+        foreach (DataRow row in dt.Rows)
+        {
+            IDictionary<string, object> expando = new ExpandoObject();
+            foreach (DataColumn column in dt.Columns)
+            {
+                expando[column.ColumnName] = row[column];
+            }
+            list.Add((ExpandoObject)expando);
+        }
+
+        return list;
+    }
+
+    private DataTable GetSampleDataTable()
+    {
+        var dt = new DataTable();
+        dt.Columns.Add("ID", typeof(int));
+        dt.Columns.Add("Name", typeof(string));
+        dt.Columns.Add("Date", typeof(DateTime));
+
+        dt.Rows.Add(1, "Alice", DateTime.Now.AddDays(-1));
+        dt.Rows.Add(2, "Bob", DateTime.Now);
+        dt.Rows.Add(3, "Charlie", DateTime.Now.AddDays(1));
+
+        return dt;
+    }
+}
