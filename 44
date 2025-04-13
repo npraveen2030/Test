@@ -1,0 +1,28 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace AdjustedElementExample
+{
+    public class AdjustedElementDataModel
+    {
+        public int ModelId { get; set; }              // Added for filtering
+        public string LongName { get; set; }
+        public decimal Tier1Name { get; set; }
+        public decimal Cost { get; set; }
+        public decimal ExceptionCost { get; set; }
+        public decimal UnitPrice { get; set; }
+        public string Manager { get; set; }
+        public string ManagerId { get; set; }
+        public string ManagerEmail { get; set; }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Dummy data
+            List<AdjustedElementDataModel> adjustedElements = new List<AdjustedElementDataModel>
+            {
+                new AdjustedElementDataModel { ModelId = 100823, LongName = "Element A", Tier1Name = 1.1m, Cost = 10.50m, ExceptionCost = 0.50m, UnitPrice = 11.00m, Manager = "Alice", ManagerId = "M001", ManagerEmail = "alice@example.com" },
+                new AdjustedElementDataModel { ModelId = 100823, LongName = "Element B", Tier1Name = 2.2m, Cost = 20.00m, ExceptionCost = 1.00m, UnitPrice = 21.00m, Manager = "Bob",
