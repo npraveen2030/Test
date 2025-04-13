@@ -1,0 +1,44 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace AdjustedAnalysisExample
+{
+    public class AdjustedAnalysisDataModel
+    {
+        public int ModelId { get; set; }  // Added for filtering
+        public decimal AvgLedgerBalance { get; set; }
+        public decimal PositiveCollectedBalance { get; set; }
+        public decimal NegativeCollectedBalance { get; set; }
+        public decimal Ecr { get; set; }
+        public decimal AvgCollectedBalance { get; set; }
+        public decimal NegCollectedBalance { get; set; }
+        public string ContractStart { get; set; }
+        public string ContractEnd { get; set; }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Create 5 dummy rows
+            List<AdjustedAnalysisDataModel> dataList = new List<AdjustedAnalysisDataModel>
+            {
+                new AdjustedAnalysisDataModel { ModelId = 100823, AvgLedgerBalance = 1000.50m, PositiveCollectedBalance = 800.00m, NegativeCollectedBalance = 200.00m, Ecr = 1.25m, AvgCollectedBalance = 750.00m, NegCollectedBalance = 50.00m, ContractStart = "2024-01-01", ContractEnd = "2025-01-01" },
+                new AdjustedAnalysisDataModel { ModelId = 100823, AvgLedgerBalance = 1500.00m, PositiveCollectedBalance = 1200.00m, NegativeCollectedBalance = 300.00m, Ecr = 1.15m, AvgCollectedBalance = 1100.00m, NegCollectedBalance = 100.00m, ContractStart = "2024-02-01", ContractEnd = "2025-02-01" },
+                new AdjustedAnalysisDataModel { ModelId = 100823, AvgLedgerBalance = 1800.75m, PositiveCollectedBalance = 1400.00m, NegativeCollectedBalance = 400.00m, Ecr = 1.05m, AvgCollectedBalance = 1300.00m, NegCollectedBalance = 150.00m, ContractStart = "2024-03-01", ContractEnd = "2025-03-01" },
+                new AdjustedAnalysisDataModel { ModelId = 100823, AvgLedgerBalance = 2000.00m, PositiveCollectedBalance = 1600.00m, NegativeCollectedBalance = 500.00m, Ecr = 1.10m, AvgCollectedBalance = 1450.00m, NegCollectedBalance = 200.00m, ContractStart = "2024-04-01", ContractEnd = "2025-04-01" },
+                new AdjustedAnalysisDataModel { ModelId = 100999, AvgLedgerBalance = 2200.00m, PositiveCollectedBalance = 1700.00m, NegativeCollectedBalance = 600.00m, Ecr = 1.20m, AvgCollectedBalance = 1550.00m, NegCollectedBalance = 250.00m, ContractStart = "2024-05-01", ContractEnd = "2025-05-01" }
+            };
+
+            // Lambda to filter by ModelId
+            var filteredList = dataList.Where(x => x.ModelId == 100823).ToList();
+
+            // Output filtered data
+            foreach (var item in filteredList)
+            {
+                Console.WriteLine($"ModelId: {item.ModelId}, AvgLedgerBalance: {item.AvgLedgerBalance}, Ecr: {item.Ecr}, Contract: {item.ContractStart} to {item.ContractEnd}");
+            }
+        }
+    }
+}
