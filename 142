@@ -1,3 +1,28 @@
+using (var db = new YourDbContext())
+{
+    var newRecord = new AdjustedElementData
+    {
+        ModelId = modelId,
+        AnalysisId = analysisId,
+        Volume = volume,
+        UnitPrice = unit_price,
+        ElementId = elementId,
+        CompPrice = compPrice,
+        ChargeClass = chargeClass,
+        StandardPrice = standardPrice,
+        Tier = tier,
+        CampaignId = campaignId,
+        PcdElement = pcdElement
+    };
+
+    db.AdjustedElementDataSet.Add(newRecord);
+    db.SaveChanges();
+}
+
+
+================================================================================================================
+================================================================================================================
+================================================================================================================
 @using Radzen;
 @using Radzen.Blazor;
 
