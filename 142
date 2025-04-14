@@ -1,0 +1,6 @@
+<RadzenCheckBoxList TValue="List<string>" 
+                    Data="@options" 
+                    @bind-Value="@selectedValues" 
+                    TextProperty="Text" 
+                    ValueProperty="Value" 
+                    Style="width: 300px;" />
