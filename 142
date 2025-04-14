@@ -4,3 +4,24 @@
                     TextProperty="Text" 
                     ValueProperty="Value" 
                     Style="width: 300px;" />
+
+@code {
+    // Class to hold each item
+    public class OptionItem
+    {
+        public string Text { get; set; }
+        public string Value { get; set; }
+    }
+
+    // List of options
+    List<OptionItem> options = new()
+    {
+        new OptionItem { Text = "Option 1", Value = "1" },
+        new OptionItem { Text = "Option 2", Value = "2" },
+        new OptionItem { Text = "Option 3", Value = "3" }
+    };
+
+    // Selected values (bound to component)
+    List<string> selectedValues = new();
+}
+
