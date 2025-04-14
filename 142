@@ -1,3 +1,29 @@
+@using Radzen
+@using Radzen.Blazor
+
+<RadzenCheckBoxList @bind-Value="@selectedValues" TValue="int" Data="@options" TextProperty="Text" ValueProperty="Value" />
+
+@code {
+    List<int> selectedValues = new List<int>();
+
+    List<Option> options = new List<Option>()
+    {
+        new Option { Text = "Option 1", Value = 1 },
+        new Option { Text = "Option 2", Value = 2 },
+        new Option { Text = "Option 3", Value = 3 }
+    };
+
+    public class Option
+    {
+        public string Text { get; set; }
+        public int Value { get; set; }
+    }
+}
+
+
+
+
+
 <RadzenCheckBoxList TValue="List<string>" 
                     Data="@options" 
                     @bind-Value="@selectedValues" 
