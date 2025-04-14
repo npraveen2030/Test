@@ -1,0 +1,144 @@
+<RadzenDataGrid TItem="AdjustedElementDataModel"
+                Data="@adjustedData"
+                RowSelect="@OnRowSelect"
+                ShowPagingSummary="true"
+                AllowPaging="true"
+                AllowSorting="true"
+                PageSize="10"
+                ColumnWidth="150px"
+                Class="w-100">
+
+    <Columns>
+
+        <!-- Sub Product Name -->
+        <RadzenDataGridColumn TItem="AdjustedElementDataModel" Title="Sub Product Name">
+            <Template Context="data">
+                <RadzenLabel Text="@data.LongName" />
+            </Template>
+        </RadzenDataGridColumn>
+
+        <!-- Account -->
+        <RadzenDataGridColumn TItem="AdjustedElementDataModel" Title="Account">
+            <Template Context="data">
+                <RadzenLabel Text="@data.KeyAccount" />
+            </Template>
+        </RadzenDataGridColumn>
+
+        <!-- Standard Price -->
+        <RadzenDataGridColumn TItem="AdjustedElementDataModel" Title="Standard Price">
+            <Template Context="data">
+                <RadzenLabel Text="@data.StandardPrice?.ToString("C")" />
+            </Template>
+        </RadzenDataGridColumn>
+
+        <!-- Volume -->
+        <RadzenDataGridColumn TItem="AdjustedElementDataModel" Title="Volume">
+            <Template Context="data">
+                <RadzenTextBox @bind-Value="data.Volume" Style="width:100%;" />
+            </Template>
+        </RadzenDataGridColumn>
+
+        <!-- Unit Price -->
+        <RadzenDataGridColumn TItem="AdjustedElementDataModel" Title="Unit Price">
+            <Template Context="data">
+                <RadzenTextBox @bind-Value="data.UnitPrice" Style="width:100%;" />
+                <RadzenDropDown Data="@priceOptions" @bind-Value="data.UnitPrice" Style="width:100%;" />
+            </Template>
+        </RadzenDataGridColumn>
+
+        <!-- Discount 3 -->
+        <RadzenDataGridColumn TItem="AdjustedElementDataModel" Title="Discount 3">
+            <Template Context="data">
+                <RadzenLabel Text="@(data.StandardPrice - data.CompPrice)" />
+            </Template>
+        </RadzenDataGridColumn>
+
+        <!-- Competitor Price -->
+        <RadzenDataGridColumn TItem="AdjustedElementDataModel" Title="Competitor Price">
+            <Template Context="data">
+                <RadzenTextBox @bind-Value="data.CompPrice" Style="width:100%;" />
+            </Template>
+        </RadzenDataGridColumn>
+
+        <!-- Variance % -->
+        <RadzenDataGridColumn TItem="AdjustedElementDataModel" Title="Variance %">
+            <Template Context="data">
+                <RadzenLabel Text="@($"{(data.StandardPrice - data.CompPrice) / data.StandardPrice:P1}")" />
+            </Template>
+        </RadzenDataGridColumn>
+
+        <!-- Exception Fees -->
+        <RadzenDataGridColumn TItem="AdjustedElementDataModel" Title="Exception Fees">
+            <Template Context="data">
+                <RadzenLabel Text="@data.Cost?.ToString("C")" />
+            </Template>
+        </RadzenDataGridColumn>
+
+        <!-- Expense -->
+        <RadzenDataGridColumn TItem="AdjustedElementDataModel" Title="Expense">
+            <Template Context="data">
+                <RadzenLabel Text="@data.Cost?.ToString("C")" />
+            </Template>
+        </RadzenDataGridColumn>
+
+        <!-- Fee Income -->
+        <RadzenDataGridColumn TItem="AdjustedElementDataModel" Title="Fee Income">
+            <Template Context="data">
+                <RadzenLabel Text="@((data.UnitPrice * data.Volume)?.ToString("C"))" />
+            </Template>
+        </RadzenDataGridColumn>
+
+        <!-- Element ID -->
+        <RadzenDataGridColumn TItem="AdjustedElementDataModel" Title="Element ID">
+            <Template Context="data">
+                <RadzenLabel Text="@data.ElementID.ToString()" />
+            </Template>
+        </RadzenDataGridColumn>
+
+        <!-- AFP Code -->
+        <RadzenDataGridColumn TItem="AdjustedElementDataModel" Title="AFP Code">
+            <Template Context="data">
+                <RadzenLabel Text="@data.AfpCode" />
+            </Template>
+        </RadzenDataGridColumn>
+
+        <!-- Delete Button -->
+        <RadzenDataGridColumn TItem="AdjustedElementDataModel" Title="Actions">
+            <Template Context="data">
+                <RadzenButton Icon="close" ButtonStyle="ButtonStyle.Danger" Size="ButtonSize.Small" 
+                              Click="@(() => OnDelete(data))" Style="margin-left: 10px;"
+                              Tooltip="Remove From Pricing Model" />
+            </Template>
+        </RadzenDataGridColumn>
+
+    </Columns>
+</RadzenDataGrid>
+@code {
+    List<AdjustedElementDataModel> adjustedData = new();
+
+    List<decimal> priceOptions = new() { 10, 20, 30, 50, 100 };
+
+    protected override void OnInitialized()
+    {
+        adjustedData = GetDummyAdjustedData();
+    }
+
+    void OnDelete(AdjustedElementDataModel item)
+    {
+        adjustedData.Remove(item);
+    }
+
+    void OnRowSelect(AdjustedElementDataModel item)
+    {
+        // Optional row selection logic
+    }
+
+    List<AdjustedElementDataModel> GetDummyAdjustedData()
+    {
+        return new()
+        {
+            new AdjustedElementDataModel { Element = "E1", LongName = "SubProduct1", StandardPrice = 50, CompPrice = 45, Cost = 5, UnitPrice = 10, Volume = 100, ElementID = 1, AfpCode = "AFP1", KeyAccount = "Acc1" },
+            new AdjustedElementDataModel { Element = "E2", LongName = "SubProduct2", StandardPrice = 60, CompPrice = 50, Cost = 7, UnitPrice = 12, Volume = 80, ElementID = 2, AfpCode = "AFP2", KeyAccount = "Acc2" }
+        };
+    }
+}
