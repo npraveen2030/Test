@@ -1,0 +1,100 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace YourNamespace
+{
+    public class AdjustedElementDataModel
+    {
+        public string Element { get; set; }
+        public string PRName { get; set; }
+        public string LongName { get; set; }
+        public string AfpCode { get; set; }
+        public decimal StandardPrice { get; set; }
+        public int Tier1Volume { get; set; }
+        public decimal Tier2Price { get; set; }
+        public int Tier2Volume { get; set; }
+        public int Tier2PriceInt { get; set; }
+        public decimal Tier3Price { get; set; }
+        public int ComaignId { get; set; }
+        public decimal Cost { get; set; }
+        public string PcdElement { get; set; }
+        public decimal CompPrice { get; set; }
+        public decimal UnitPrice { get; set; }
+        public int Volume { get; set; }
+        public int ElementID { get; set; }
+        public char ChargeClass { get; set; }
+        public char TieredType { get; set; }
+        public int Tier { get; set; }
+        public string KeyAccount { get; set; }
+        public int AnalysisId { get; set; }
+        public string BillingMethod { get; set; }
+        public string Description { get; set; }
+        public bool SetupFree { get; set; }
+    }
+
+    class Program
+    {
+        static void Main()
+        {
+            // Dummy data
+            List<AdjustedElementDataModel> data = new List<AdjustedElementDataModel>
+            {
+                new AdjustedElementDataModel
+                {
+                    Element = "Element1", PRName = "PR1", LongName = "Long Name 1", AfpCode = "A1",
+                    StandardPrice = 10.50m, Tier1Volume = 100, Tier2Price = 9.5m, Tier2Volume = 150,
+                    Tier2PriceInt = 9, Tier3Price = 8.75m, ComaignId = 2001, Cost = 7.25m,
+                    PcdElement = "P1", CompPrice = 11.00m, UnitPrice = 9.00m, Volume = 500,
+                    ElementID = 1, ChargeClass = 'A', TieredType = 'B', Tier = 1, KeyAccount = "Key1",
+                    AnalysisId = 100823, BillingMethod = "Monthly", Description = "Test 1", SetupFree = true
+                },
+                new AdjustedElementDataModel
+                {
+                    Element = "Element2", PRName = "PR2", LongName = "Long Name 2", AfpCode = "A2",
+                    StandardPrice = 15.00m, Tier1Volume = 120, Tier2Price = 14.0m, Tier2Volume = 160,
+                    Tier2PriceInt = 13, Tier3Price = 12.75m, ComaignId = 2002, Cost = 11.25m,
+                    PcdElement = "P2", CompPrice = 13.00m, UnitPrice = 14.00m, Volume = 600,
+                    ElementID = 2, ChargeClass = 'B', TieredType = 'C', Tier = 2, KeyAccount = "Key2",
+                    AnalysisId = 100823, BillingMethod = "Quarterly", Description = "Test 2", SetupFree = false
+                },
+                new AdjustedElementDataModel
+                {
+                    Element = "Element3", PRName = "PR3", LongName = "Long Name 3", AfpCode = "A3",
+                    StandardPrice = 20.00m, Tier1Volume = 130, Tier2Price = 18.5m, Tier2Volume = 170,
+                    Tier2PriceInt = 18, Tier3Price = 17.75m, ComaignId = 2003, Cost = 15.25m,
+                    PcdElement = "P3", CompPrice = 18.00m, UnitPrice = 19.00m, Volume = 700,
+                    ElementID = 3, ChargeClass = 'C', TieredType = 'D', Tier = 3, KeyAccount = "Key3",
+                    AnalysisId = 100823, BillingMethod = "Yearly", Description = "Test 3", SetupFree = true
+                },
+                new AdjustedElementDataModel
+                {
+                    Element = "Element4", PRName = "PR4", LongName = "Long Name 4", AfpCode = "A4",
+                    StandardPrice = 25.00m, Tier1Volume = 140, Tier2Price = 23.0m, Tier2Volume = 180,
+                    Tier2PriceInt = 22, Tier3Price = 21.75m, ComaignId = 2004, Cost = 19.25m,
+                    PcdElement = "P4", CompPrice = 22.00m, UnitPrice = 24.00m, Volume = 800,
+                    ElementID = 4, ChargeClass = 'D', TieredType = 'E', Tier = 4, KeyAccount = "Key4",
+                    AnalysisId = 100823, BillingMethod = "Monthly", Description = "Test 4", SetupFree = false
+                },
+                new AdjustedElementDataModel
+                {
+                    Element = "Element5", PRName = "PR5", LongName = "Long Name 5", AfpCode = "A5",
+                    StandardPrice = 30.00m, Tier1Volume = 150, Tier2Price = 27.5m, Tier2Volume = 190,
+                    Tier2PriceInt = 27, Tier3Price = 26.75m, ComaignId = 2005, Cost = 23.25m,
+                    PcdElement = "P5", CompPrice = 26.00m, UnitPrice = 29.00m, Volume = 900,
+                    ElementID = 5, ChargeClass = 'E', TieredType = 'F', Tier = 5, KeyAccount = "Key5",
+                    AnalysisId = 100823, BillingMethod = "Quarterly", Description = "Test 5", SetupFree = true
+                }
+            };
+
+            // Lambda to get list of 5 where AnalysisId == 100823
+            var result = data.Where(x => x.AnalysisId == 100823).Take(5).ToList();
+
+            // Output for test
+            foreach (var item in result)
+            {
+                Console.WriteLine($"Element: {item.Element}, AnalysisId: {item.AnalysisId}, Price: {item.StandardPrice}");
+            }
+        }
+    }
+}
