@@ -1,0 +1,129 @@
+@page "/adjusted-analysis"
+@using System.Linq
+@using System.Collections.Generic
+
+@code {
+    public class AdjustedAnalysisDataModel
+    {
+        public decimal CustomerName { get; set; }
+        public decimal NoOfAccount { get; set; }
+        public string Keyaccounts { get; set; }
+        public bool Include { get; set; }
+        public int ID { get; set; }
+        public string BillingMethod { get; set; }
+        public decimal Ecr { get; set; }
+        public decimal NegativeCollectedRate { get; set; }
+        public decimal PostiveCollectedBalance { get; set; }
+        public decimal NegativeCollectedBalance { get; set; }
+        public decimal AvgLedgerBalance { get; set; }
+        public decimal AvgCollectedBalance { get; set; }
+        public string ExceptionSetName { get; set; }
+        public string ExceptionExpiration { get; set; }
+        public bool UseStandardEcr { get; set; }
+        public bool EcrOnlyChange { get; set; }
+        public string RateChangeType { get; set; }
+    }
+
+    List<AdjustedAnalysisDataModel> AdjustedData = Enumerable.Range(1, 5).Select(i => new AdjustedAnalysisDataModel
+    {
+        CustomerName = 1000 + i,
+        NoOfAccount = 10 + i,
+        Keyaccounts = $"Key{i}",
+        Include = i % 2 == 0,
+        ID = 100823,
+        BillingMethod = billingMethods[i % billingMethods.Count],
+        Ecr = 0.25m + i,
+        NegativeCollectedRate = 0.1m * i,
+        PostiveCollectedBalance = 2000 + i,
+        NegativeCollectedBalance = 500 + i,
+        AvgLedgerBalance = 1500 + i,
+        AvgCollectedBalance = 1600 + i,
+        ExceptionSetName = $"Exception{i}",
+        ExceptionExpiration = DateTime.Now.AddDays(i).ToString("yyyy-MM-dd"),
+        UseStandardEcr = i % 2 == 0,
+        EcrOnlyChange = i % 3 == 0,
+        RateChangeType = rateChangeTypes[i % rateChangeTypes.Count]
+    }).ToList();
+
+    List<string> billingMethods = new()
+    {
+        "Monthly, Direct Debit", "Monthly, Billed", "Quarterly, Direct Debit",
+        "Quarterly, Billed", "Semi, Direct Debit", "Semi, Billed",
+        "Yearly, Direct Debit", "Yearly, Billed", "Waived"
+    };
+
+    List<string> rateChangeTypes = new() { "NC", "ADD", "CHG", "RMV" };
+}
+
+<RadzenDataGrid TItem="AdjustedAnalysisDataModel" Data="@AdjustedData" ShowPagingSummary="true" PageSize="5" AllowFiltering="true" AllowSorting="true" AllowPaging="true" class="w-full">
+    <Columns>
+        <RadzenDataGridColumn TItem="AdjustedAnalysisDataModel" Width="50px">
+            <Template Context="data">
+                <RadzenCheckBox TriState="false" Value="@data.Include" />
+            </Template>
+        </RadzenDataGridColumn>
+
+        <RadzenDataGridColumn TItem="AdjustedAnalysisDataModel" Property="Keyaccounts" Title="Key Account" />
+        <RadzenDataGridColumn TItem="AdjustedAnalysisDataModel" Property="CustomerName" Title="Customer Name" />
+
+        <RadzenDataGridColumn TItem="AdjustedAnalysisDataModel" Property="RateChangeType" Title="Rate Change Type">
+            <EditTemplate Context="data">
+                <RadzenDropDown @bind-Value="data.RateChangeType" Data="@rateChangeTypes" />
+            </EditTemplate>
+        </RadzenDataGridColumn>
+
+        <RadzenDataGridColumn TItem="AdjustedAnalysisDataModel" Property="BillingMethod" Title="Billing Method">
+            <EditTemplate Context="data">
+                <RadzenDropDown @bind-Value="data.BillingMethod" Data="@billingMethods" />
+            </EditTemplate>
+        </RadzenDataGridColumn>
+
+        <RadzenDataGridColumn TItem="AdjustedAnalysisDataModel" Property="Ecr" Title="ECR">
+            <EditTemplate Context="data">
+                <RadzenTextBox @bind-Value="data.Ecr" Style="width:100%" />
+            </EditTemplate>
+        </RadzenDataGridColumn>
+
+        <RadzenDataGridColumn TItem="AdjustedAnalysisDataModel" Property="NegativeCollectedRate" Title="Neg Rate">
+            <EditTemplate Context="data">
+                <RadzenTextBox @bind-Value="data.NegativeCollectedRate" Style="width:100%" />
+            </EditTemplate>
+        </RadzenDataGridColumn>
+
+        <RadzenDataGridColumn TItem="AdjustedAnalysisDataModel" Property="AvgLedgerBalance" Title="Avg Ledger Balance">
+            <EditTemplate Context="data">
+                <RadzenTextBox @bind-Value="data.AvgLedgerBalance" Style="width:100%" />
+            </EditTemplate>
+        </RadzenDataGridColumn>
+
+        <RadzenDataGridColumn TItem="AdjustedAnalysisDataModel" Property="AvgCollectedBalance" Title="Avg Collected Balance">
+            <EditTemplate Context="data">
+                <RadzenTextBox @bind-Value="data.AvgCollectedBalance" Style="width:100%" />
+            </EditTemplate>
+        </RadzenDataGridColumn>
+
+        <RadzenDataGridColumn TItem="AdjustedAnalysisDataModel" Property="PostiveCollectedBalance" Title="Pos Collected Balance">
+            <EditTemplate Context="data">
+                <RadzenTextBox @bind-Value="data.PostiveCollectedBalance" Style="width:100%" />
+            </EditTemplate>
+        </RadzenDataGridColumn>
+
+        <RadzenDataGridColumn TItem="AdjustedAnalysisDataModel" Property="NegativeCollectedBalance" Title="Neg Collected Balance">
+            <EditTemplate Context="data">
+                <RadzenTextBox @bind-Value="data.NegativeCollectedBalance" Style="width:100%" />
+            </EditTemplate>
+        </RadzenDataGridColumn>
+
+        <RadzenDataGridColumn TItem="AdjustedAnalysisDataModel" Property="ExceptionSetName" Title="Exception Set Name">
+            <EditTemplate Context="data">
+                <RadzenTextBox @bind-Value="data.ExceptionSetName" Style="width:100%" />
+            </EditTemplate>
+        </RadzenDataGridColumn>
+
+        <RadzenDataGridColumn TItem="AdjustedAnalysisDataModel" Property="ExceptionExpiration" Title="Exception Expiration">
+            <EditTemplate Context="data">
+                <RadzenTextBox @bind-Value="data.ExceptionExpiration" ReadOnly="true" Style="width:100%" />
+            </EditTemplate>
+        </RadzenDataGridColumn>
+    </Columns>
+</RadzenDataGrid>
