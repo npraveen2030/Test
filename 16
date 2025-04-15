@@ -1,3 +1,21 @@
+<RadzenDataGridColumn TItem="AdjustedAnalysisDataModel" Property="ExceptionSetName" Title="Exception Set Name">
+    <Template Context="data">
+        <RadzenDropDown 
+            Value="@data.ExceptionSetName"
+            Data="@ExceptionNames" 
+            TextProperty="Name" 
+            ValueProperty="Name" 
+            Style="width:100%" 
+            Change="@((args) => OnExceptionSetNameChanged(args, data))" />
+    </Template>
+</RadzenDataGridColumn>
+
+
+===========================================================================================================
+===========================================================================================================
+===========================================================================================================
+===========================================================================================================
+===========================================================================================================
 @page "/adjusted-analysis"
 @using System.Linq
 @using System.Collections.Generic
