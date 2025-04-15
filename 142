@@ -4,6 +4,25 @@
 ============================================================================================================================
 ============================================================================================================================
 ============================================================================================================================
+<RadzenGrid Data="@employeeList" TItem="Employee" ColumnWidth="200px" ShowPagingSummary="false">
+    <Columns>
+        <RadzenGridColumn TItem="Employee" Title="Employee Name">
+            <Template Context="emp">
+                <a href="#" @onclick="() => OnEmployeeClick(emp)" style="color: blue; text-decoration: underline;">
+                    @emp.EmployeeName
+                </a>
+            </Template>
+        </RadzenGridColumn>
+
+        <RadzenGridColumn TItem="Employee" Property="Age" Title="Age" />
+        <RadzenGridColumn TItem="Employee" Property="Salary" Title="Salary" />
+    </Columns>
+</RadzenGrid>
+ private void OnEmployeeClick(Employee emp)
+    {
+        // Handle click event (e.g., show a dialog, navigate, etc.)
+        Console.WriteLine($"Clicked: {emp.EmployeeName}");
+    }
 ============================================================================================================================
 
 var reportNames = new List<string>
