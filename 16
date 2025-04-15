@@ -12,6 +12,31 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+<RadzenDataGrid TItem="AdjustedAnalysisDataModel" Data="@gridData" AllowPaging="true">
+    <Columns>
+        <RadzenDataGridColumnGroup Title="Customer Info">
+            <Columns>
+                <RadzenDataGridColumn TItem="AdjustedAnalysisDataModel" Property="CustomerName" Title="Customer Name" />
+                <RadzenDataGridColumn TItem="AdjustedAnalysisDataModel" Property="NoOfAccount" Title="No Of Accounts" />
+            </Columns>
+        </RadzenDataGridColumnGroup>
+
+        <RadzenDataGridColumnGroup Title="Balances">
+            <Columns>
+                <RadzenDataGridColumn TItem="AdjustedAnalysisDataModel" Property="AvgLedgerBalance" Title="Avg Ledger Balance" />
+                <RadzenDataGridColumn TItem="AdjustedAnalysisDataModel" Property="AvgCollectedBalance" Title="Avg Collected Balance" />
+            </Columns>
+        </RadzenDataGridColumnGroup>
+
+        <RadzenDataGridColumnGroup Title="ECR Info">
+            <Columns>
+                <RadzenDataGridColumn TItem="AdjustedAnalysisDataModel" Property="Ecr" Title="ECR" />
+                <RadzenDataGridColumn TItem="AdjustedAnalysisDataModel" Property="NegativeCollectedRate" Title="Negative Collected Rate" />
+            </Columns>
+        </RadzenDataGridColumnGroup>
+    </Columns>
+</RadzenDataGrid>
+
 ===========================================================================================================
 void OnExceptionSetNameChanged(object value, AdjustedAnalysisDataModel data)
 {
