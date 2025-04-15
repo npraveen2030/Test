@@ -1,3 +1,21 @@
+public class ExceptionName
+{
+    public string Name { get; set; }
+}
+
+public List<ExceptionName> ExceptionNames = new()
+{
+    new ExceptionName { Name = "Praveen1" },
+    new ExceptionName { Name = "Praveen2" },
+    new ExceptionName { Name = "Praveen3" }
+};
+
+
+===========================================================================================================
+===========================================================================================================
+===========================================================================================================
+===========================================================================================================
+===========================================================================================================
 <RadzenDataGridColumn TItem="AdjustedAnalysisDataModel" Property="ExceptionSetName" Title="Exception Set Name">
     <Template Context="data">
         <RadzenDropDown 
