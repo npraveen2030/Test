@@ -3,6 +3,88 @@
 ============================================================================================================================
 ============================================================================================================================
 ============================================================================================================================
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class ElementClassificationModel
+{
+    public string Element { get; set; }
+    public string PRName { get; set; }
+    public string LongName { get; set; }
+    public string AfpCode { get; set; }
+    public decimal StandardPrice { get; set; }
+    public int Tier1Volume { get; set; }
+    public decimal Tier1Price { get; set; }
+    public int Tier2Volume { get; set; }
+    public int Tier2Price { get; set; }
+    public decimal Tier3Price { get; set; }
+    public decimal Cost { get; set; }
+    public int ComaignId { get; set; }
+    public bool AlwaysShow { get; set; }
+    public string PcdElement { get; set; }
+    public decimal CompPrice { get; set; }
+    public decimal UnitPrice { get; set; }
+    public int Volume { get; set; }
+    public int ElementID { get; set; }
+    public char ChargeClass { get; set; }
+    public char TieredType { get; set; }
+    public int Tier { get; set; }
+    public string KeyAccount { get; set; }
+    public int AnalysisId { get; set; }
+    public string BillingMethod { get; set; }
+    public string Description { get; set; }
+    public bool SetupFree { get; set; }
+    public int ModelId { get; set; } // For filtering
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        // Lambda to return 5 dummy rows for modelId = 100823
+        Func<List<ElementClassificationModel>> getDummyData = () =>
+            Enumerable.Range(1, 5).Select(i => new ElementClassificationModel
+            {
+                Element = $"Element-{i}",
+                PRName = $"PRName-{i}",
+                LongName = $"LongName-{i}",
+                AfpCode = $"AFP-{i}",
+                StandardPrice = 99.5m + i,
+                Tier1Volume = 100 * i,
+                Tier1Price = 50.5m + i,
+                Tier2Volume = 200 * i,
+                Tier2Price = 75 + i,
+                Tier3Price = 125.5m + i,
+                Cost = 30.25m + i,
+                ComaignId = i,
+                AlwaysShow = i % 2 == 0,
+                PcdElement = $"PCD-{i}",
+                CompPrice = 88.5m + i,
+                UnitPrice = 45.75m + i,
+                Volume = 1000 * i,
+                ElementID = i,
+                ChargeClass = 'C',
+                TieredType = 'T',
+                Tier = i,
+                KeyAccount = $"Key-{i}",
+                AnalysisId = 1000 + i,
+                BillingMethod = "Monthly",
+                Description = $"Sample description {i}",
+                SetupFree = i % 2 != 0,
+                ModelId = 100823
+            }).ToList();
+
+        // Fetch and display
+        var dummyList = getDummyData();
+
+        foreach (var item in dummyList)
+        {
+            Console.WriteLine($"{item.Element} | {item.PRName} | ModelId: {item.ModelId}");
+        }
+    }
+}
+
 ============================================================================================================================
 <RadzenGrid Data="@employeeList" TItem="Employee" ColumnWidth="200px" ShowPagingSummary="false">
     <Columns>
