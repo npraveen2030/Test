@@ -1,6 +1,34 @@
 
 ============================================================================================================================
 ============================================================================================================================
+<RadzenDropDown 
+    @bind-Value="selectedValue"
+    Data="@dropdownItems"
+    TextProperty="Text"
+    ValueProperty="Value"
+    Filterable="true"
+    AllowClear="true"
+    Placeholder="Select an option"
+    Style="width: 300px;" />
+@code {
+    private string selectedValue;
+
+    private List<DropDownItem> dropdownItems = new()
+    {
+        new DropDownItem { Text = "Apple", Value = "1" },
+        new DropDownItem { Text = "Banana", Value = "2" },
+        new DropDownItem { Text = "Mango", Value = "3" },
+        new DropDownItem { Text = "Pineapple", Value = "4" },
+        new DropDownItem { Text = "Strawberry", Value = "5" }
+    };
+
+    public class DropDownItem
+    {
+        public string Text { get; set; }
+        public string Value { get; set; }
+    }
+}
+
 ============================================================================================================================
 <RadzenDropDown @bind-Value="item.UnitPriceDropdownValue"
                 Data="@unitPriceOptions"
