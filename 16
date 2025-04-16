@@ -11,6 +11,39 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Centered Label in Div</title>
+  <style>
+    .centered-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 150px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+      margin: 50px auto;
+      width: 50%;
+      border-radius: 8px;
+    }
+
+    .centered-container label {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="centered-container">
+    <label for="example">This is a centered label</label>
+  </div>
+
+</body>
+</html>
+
 ===========================================================================================================
 <RadzenDataGrid TItem="AdjustedAnalysisDataModel" Data="@gridData" AllowPaging="true">
     <Columns>
