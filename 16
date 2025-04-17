@@ -10,6 +10,134 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+
+using Microsoft.EntityFrameworkCore;
+using YourNamespace;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add DbContext with connection pooling
+builder.Services.AddDbContextPool<DB3Entities>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+var app = builder.Build();
+
+// Optional: Add app configuration here
+
+app.Run();
+
+=================================
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=your_server;Database=your_database;User Id=your_user;Password=your_password;"
+  }
+}
+=================================
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
+
+namespace YourNamespace
+{
+    [Table("CIFVTBAD")]
+    public class Cifvtbad
+    {
+        [Key]
+        [Column("TBAD ACCT NUM")]
+        [StringLength(16)]
+        public string TbadAcctNum { get; set; }
+
+        [Required]
+        [Column("TBAD MAST ACCT NUM")]
+        [StringLength(16)]
+        public string TbadMastAcctNum { get; set; }
+
+        [Required]
+        [Column("TBAD PRODUCT TYPE")]
+        [StringLength(2)]
+        public string TbadProductType { get; set; }
+
+        [Required]
+        [Column("TBAD STATUS")]
+        [StringLength(2)]
+        public string TbadStatus { get; set; }
+
+        [Required]
+        [Column("TBAD DATE OPN CLS")]
+        [StringLength(7)]
+        public string TbadDateOpnCls { get; set; }
+
+        [Required]
+        [Column("TBAD SHORT NAME")]
+        [StringLength(25)]
+        public string TbadShortName { get; set; }
+
+        [Required]
+        [Column("TBAD COST CENTER")]
+        [StringLength(7)]
+        public string TbadCostCenter { get; set; }
+
+        [Required]
+        [Column("TBAD_BRANCH")]
+        [StringLength(5)]
+        public string TbadBranch { get; set; }
+
+        [Required]
+        [Column("TBAD OFFICER")]
+        [StringLength(5)]
+        public string TbadOfficer { get; set; }
+
+        [Required]
+        [Column("TBAD ANAL SCHD")]
+        [StringLength(2)]
+        public string TbadAnalSchd { get; set; }
+
+        [Required]
+        [Column("TBAD_PACKAGE CODE")]
+        [StringLength(6)]
+        public string TbadPackageCode { get; set; }
+    }
+
+    public class DB3Entities : DbContext
+    {
+        public DB3Entities(DbContextOptions<DB3Entities> options) : base(options)
+        {
+        }
+
+        public DbSet<Cifvtbad> Cifvtbad { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Cifvtbad>()
+                .HasKey(e => e.TbadAcctNum); // Assuming it's the primary key
+
+            base.OnModelCreating(modelBuilder);
+        }
+    }
+}
+
+=================================
+
+=================================
+
+=================================
+
+=================================
+
+=================================
+
+=================================
+
+=================================
+
+=================================
+
+=================================
+
+=================================
+
+=================================
+
 ===========================================================================================================
 <!DOCTYPE html>
 <html lang="en">
