@@ -9,6 +9,97 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace YourNamespace.Models
+{
+    [Table("CIFVTPAD")]
+    public class Cifvtpad
+    {
+        [Key]
+        [Column("TPAD ACCT_NUM")]
+        [StringLength(16)]
+        public string TpadAcctNum { get; set; }
+
+        [Required]
+        [Column("TPAD_PERIOD_ID")]
+        [StringLength(5)]
+        public string TpadPeriodId { get; set; }
+
+        [Required]
+        [Column("TPAD PERIOD_DATE")]
+        public DateTime TpadPeriodDate { get; set; }
+
+        [Required]
+        [Column("TPAD_EXCEPTION_SET")]
+        [StringLength(8)]
+        public string TpadExceptionSet { get; set; }
+
+        [Required]
+        [Column("TPAD_CHRG_CLASS")]
+        [StringLength(2)]
+        public string TpadChrgClass { get; set; }
+
+        [Required]
+        [Column("TPAD_CR_RATE")]
+        public decimal TpadCrRate { get; set; }
+
+        [Required]
+        [Column("TPAD_OD_RATE")]
+        public decimal TpadOdRate { get; set; }
+
+        [Required]
+        [Column("TPAD_AVG_CURR_BAL")]
+        public decimal TpadAvgCurrBal { get; set; }
+
+        [Required]
+        [Column("TPAD AVG_COLL_BAL")]
+        public decimal TpadAvgCollBal { get; set; }
+
+        [Required]
+        [Column("TPAD_POS_COLL_BAL")]
+        public decimal TpadPosCollBal { get; set; }
+
+        [Required]
+        [Column("TPAD NEG COLL_BAL")]
+        public decimal TpadNegCollBal { get; set; }
+
+        [Required]
+        [Column("TPAD_FREE_COLL_BAL")]
+        public decimal TpadFreeCollBal { get; set; }
+
+        [Required]
+        [Column("TPAD RESERVE REQ")]
+        public decimal TpadReserveReq { get; set; }
+
+        [Required]
+        [Column("TPAD TIMES OD")]
+        public decimal TpadTimesOd { get; set; }
+
+        [Required]
+        [Column("TPAD_OD PREMIUM")]
+        public decimal TpadOdPremium { get; set; }
+
+        [Required]
+        [Column("TPAD SRVC_RENDERED")]
+        public decimal TpadSrvcRendered { get; set; }
+
+        [Required]
+        [Column("TPAD_PRFT_LOSS_AMT")]
+        public decimal TpadPrftLossAmt { get; set; }
+
+        [Required]
+        [Column("TPAD FEES PAID")]
+        public decimal TpadFeesPaid { get; set; }
+
+        [Required]
+        [Column("TPAD_THIRD PTY_CHG")]
+        public decimal TpadThirdPtyChg { get; set; }
+    }
+}
+
 ===========================================================================================================
 
 using Microsoft.EntityFrameworkCore;
