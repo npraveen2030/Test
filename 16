@@ -8,6 +8,75 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+@using Radzen;
+@using Radzen.Blazor;
+@using System.Collections.Generic;
+@using System.Linq;
+
+@* Declare the CheckboxItem class *@
+@code {
+    public class CheckboxItem
+    {
+        public int Id { get; set; }
+        public string Text { get; set; } = "";
+        public bool IsSelected { get; set; }
+    }
+}
+
+<div class="p-6 space-y-4">
+    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-200">RadzenCheckBox Demo (Blazor)</h2>
+    <p class="text-gray-600 dark:text-gray-400">
+        This example demonstrates using RadzenCheckBox with a custom data structure in Blazor.
+    </p>
+
+    <div class="space-y-2">
+        @foreach (var item in items)
+        {
+            <div class="flex items-center gap-2">
+                <RadzenCheckBox @bind-Value="item.IsSelected"
+                                @onchange="@((bool value) => HandleChange(value, item))"
+                                Name="@($"item-{item.Id}")"
+                                Class="mr-2" />
+                <label for="@($"item-{item.Id}")" class="text-gray-700 dark:text-gray-300">@item.Text</label>
+            </div>
+        }
+    </div>
+     <RadzenButton Click="LogSelectedItems" Text="Get Selected Items" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" />
+</div>
+
+@* Code block for component logic *@
+@code {
+    private List<CheckboxItem> items = new List<CheckboxItem>
+    {
+        new CheckboxItem { Id = 1, Text = "Item 1", IsSelected = false },
+        new CheckboxItem { Id = 2, Text = "Item 2", IsSelected = true },
+        new CheckboxItem { Id = 3, Text = "Item 3", IsSelected = false },
+    };
+
+    private void HandleChange(bool value, CheckboxItem item)
+    {
+        // Find the item in the list and update its IsSelected property
+        var itemToUpdate = items.FirstOrDefault(i => i.Id == item.Id);
+        if (itemToUpdate != null)
+        {
+            itemToUpdate.IsSelected = value;
+        }
+    }
+
+    private void LogSelectedItems()
+    {
+        var selectedItems = items.Where(item => item.IsSelected).ToList();
+        Console.WriteLine("Selected Items:");
+        foreach (var selectedItem in selectedItems)
+        {
+            Console.WriteLine($"- {selectedItem.Text}");
+        }
+        //Use JS interop to display an alert.
+        string message = $"Selected Items: {string.Join(", ", selectedItems.Select(i => i.Text))}";
+        await JSRuntime.InvokeVoidAsync("alert", message);
+    }
+}
+
 ===========================================================================================================
 using System;
 using System.ComponentModel.DataAnnotations;
