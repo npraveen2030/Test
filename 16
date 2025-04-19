@@ -3,6 +3,96 @@
 
 ===========================================================================================================
 ===========================================================================================================
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class InteresetExpensesData
+{
+    public int Id { get; set; }
+    public int ModelId { get; set; }
+    public int AccountType { get; set; }
+    public decimal AvgColBal { get; set; }
+    public bool Collateralized { get; set; }
+    public string InterestType { get; set; }
+    public decimal CurrentIntRate { get; set; }
+    public decimal ExceptionIntRate { get; set; }
+    public string BalanceName { get; set; }
+    public decimal InterestRat { get; set; }
+    public DateTime AppliedExpiration { get; set; }
+    public decimal FdicCost { get; set; }
+    public decimal FdicRate { get; set; }
+    public bool UseFedFunds { get; set; }
+    public decimal FedFundsRate { get; set; }
+    public string AccountNumber { get; set; }
+    public decimal ExceptionIntRateBonus { get; set; }
+    public decimal CurrentRate { get; set; }
+    public DateTime RateExpiration { get; set; }
+    public bool DerivedFromHogan { get; set; }
+    public int BonusType { get; set; }
+    public int CampaignId { get; set; }
+    public string ProductGroup { get; set; }
+    public string EIEligibility { get; set; }
+    public string EIEligibilityMsg { get; set; }
+    public int MaxBalance { get; set; }
+    public decimal MaxAppliedInterestRate { get; set; }
+    public int Include { get; set; }
+
+    // Dummy data generator
+    public static List<InteresetExpensesData> GetDummyData(int modelId)
+    {
+        var dummyData = Enumerable.Range(1, 5).Select(i => new InteresetExpensesData
+        {
+            Id = i,
+            ModelId = modelId,
+            AccountType = i % 3,
+            AvgColBal = 10000 + i * 1000,
+            Collateralized = i % 2 == 0,
+            InterestType = "Fixed",
+            CurrentIntRate = 4.5m + i,
+            ExceptionIntRate = 4.0m + i,
+            BalanceName = $"Balance {i}",
+            InterestRat = 3.5m + i,
+            AppliedExpiration = DateTime.Today.AddMonths(i),
+            FdicCost = 12.34m + i,
+            FdicRate = 0.25m + i,
+            UseFedFunds = i % 2 != 0,
+            FedFundsRate = 5.0m + i,
+            AccountNumber = $"ACC00{i}",
+            ExceptionIntRateBonus = 0.1m * i,
+            CurrentRate = 4.25m + i,
+            RateExpiration = DateTime.Today.AddMonths(i * 2),
+            DerivedFromHogan = true,
+            BonusType = i % 2,
+            CampaignId = 1000 + i,
+            ProductGroup = "Business",
+            EIEligibility = "Eligible",
+            EIEligibilityMsg = "Qualified",
+            MaxBalance = 50000 + i * 1000,
+            MaxAppliedInterestRate = 4.0m + i,
+            Include = 1
+        }).ToList();
+
+        return dummyData;
+    }
+}
+
+// Example usage
+public class Program
+{
+    public static void Main()
+    {
+        int modelId = 100823;
+        var list = InteresetExpensesData.GetDummyData(modelId);
+        
+        // Output for demo
+        foreach (var item in list)
+        {
+            Console.WriteLine($"{item.Id} - {item.AccountNumber} - {item.CurrentIntRate}%");
+        }
+    }
+}
+
 ===========================================================================================================
 <!DOCTYPE html>
 <html lang="en">
