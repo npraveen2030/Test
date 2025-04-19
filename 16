@@ -6,6 +6,61 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+@page "/new-customer-model"
+
+<div class="container">
+  <div class="header">Report Search</div>
+  <div class="main-content">
+    <!-- Left: Table -->
+    <div class="table-section">
+      <table>
+        <thead>
+          <tr>
+            <th colspan="2">Key Accounts Included in Model</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>123</td>
+            <td>Sample Account</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Middle: Form Section -->
+    <div class="form-section">
+      <h4>New Customer Model UX - @DateTime.Today.ToString("MM/dd/yyyy")</h4>
+      <div class="form-group">
+        <label for="effectiveDate">Proposed Pricing Effective Date</label>
+        <input type="date" id="effectiveDate" @bind="effectiveDate" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="expirationDate">Proposed Pricing Expiration Date</label>
+        <input type="date" id="expirationDate" @bind="expirationDate" class="form-control" />
+      </div>
+      <button class="view-button" @onclick="ViewProposal">View Proposal Data</button>
+    </div>
+
+    <!-- Right: Button and Error -->
+    <div class="right-section">
+      <button class="propose-button" disabled>Propose Approval</button>
+      <div class="error-message">Not Enough Information To Determine Tier</div>
+    </div>
+  </div>
+</div>
+
+@code {
+  private DateTime effectiveDate = new DateTime(2024, 8, 1);
+  private DateTime expirationDate = new DateTime(2025, 7, 31);
+
+  private void ViewProposal()
+  {
+    // You can add logic to handle the button click
+    Console.WriteLine($"Effective: {effectiveDate}, Expiration: {expirationDate}");
+  }
+}
+
 ===========================================================================================================
 @code {
     bool isExpanded = true;
