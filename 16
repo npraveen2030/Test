@@ -4,6 +4,110 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Outer Table with Nested Table</title>
+  <style>
+    /* Outer Table Styling */
+    .outer-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 2px solid #444;
+      font-family: Arial, sans-serif;
+      margin-top: 30px;
+    }
+
+    .outer-table th, .outer-table td {
+      border: 1px solid #aaa;
+      padding: 10px;
+      text-align: left;
+      background-color: #f9f9f9;
+    }
+
+    .outer-table th:nth-child(1),
+    .outer-table td:nth-child(1) {
+      width: 24%;
+    }
+
+    .outer-table th:nth-child(n+2),
+    .outer-table td:nth-child(n+2) {
+      width: 19%;
+    }
+
+    /* Inner Table Styling */
+    .inner-table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      margin-top: 10px;
+    }
+
+    .inner-table th, .inner-table td {
+      border: 1px dashed #666;
+      padding: 6px;
+      background-color: #f0f8ff;
+    }
+
+    .inner-table th {
+      background-color: #cce5ff;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <table class="outer-table">
+    <thead>
+      <tr>
+        <th>Account Name</th>
+        <th>Region</th>
+        <th>Status</th>
+        <th>Sales</th>
+        <th>Manager</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Alpha Corporation</td>
+        <td>North</td>
+        <td>Active</td>
+        <td>$12,500</td>
+        <td>John Doe</td>
+      </tr>
+      <tr>
+        <td colspan="5">
+          <strong>Details:</strong>
+          <table class="inner-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Unit Price</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Widget A</td>
+                <td>$10</td>
+                <td>100</td>
+              </tr>
+              <tr>
+                <td>Widget B</td>
+                <td>$15</td>
+                <td>200</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>
+</html>
+
 ===========================================================================================================
   .warning-box {
       display: flex;
