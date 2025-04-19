@@ -5,6 +5,29 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+  .warning-box {
+      display: flex;
+      align-items: center;
+      background-color: #fff3cd;
+      color: #856404;
+      border: 1px solid #ffeeba;
+      border-radius: 4px;
+      padding: 10px 15px;
+      margin: 20px 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .warning-icon {
+      font-size: 20px;
+      margin-right: 10px;
+    }
+
+    .warning-text {
+      font-size: 14px;
+    }<div class="warning-box">
+    <div class="warning-icon">⚠️</div>
+    <div class="warning-text">This is a warning message. Please check your inputs.</div>
+  </div>
 ===========================================================================================================
 .container {
   border: 1px solid #ccc;
