@@ -7,6 +7,25 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+@code {
+    bool isExpanded = true;
+}
+
+<RadzenPanel Style="border: 1px solid lightgray;">
+    <HeaderTemplate>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span><b>My Panel Title</b></span>
+            <RadzenButton Icon=@(isExpanded ? "expand_less" : "expand_more") Size="Small" Click="@(() => isExpanded = !isExpanded)" />
+        </div>
+    </HeaderTemplate>
+    <ChildContent>
+        @if (isExpanded)
+        {
+            <p>This is the content that can be collapsed.</p>
+        }
+    </ChildContent>
+</RadzenPanel>
+
 ===========================================================================================================
 @using Radzen;
 @using Radzen.Blazor;
