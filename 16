@@ -21,6 +21,47 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+using System;
+using System.Reflection;
+
+public class Sample
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public decimal Salary { get; set; }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Type type = typeof(Sample);
+        PropertyInfo[] properties = type.GetProperties();
+
+        foreach (var prop in properties)
+        {
+            Type propType = prop.PropertyType;
+
+            if (propType == typeof(string))
+            {
+                Console.WriteLine($"{prop.Name} is a string");
+            }
+            else if (propType == typeof(int))
+            {
+                Console.WriteLine($"{prop.Name} is an int");
+            }
+            else if (propType == typeof(decimal))
+            {
+                Console.WriteLine($"{prop.Name} is a decimal");
+            }
+            else
+            {
+                Console.WriteLine($"{prop.Name} is of type {propType.Name}");
+            }
+        }
+    }
+}
+
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
