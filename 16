@@ -19,6 +19,12 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+@inherits AnalysisBase
+@inject IJSRuntime JS
+
+<h3>Analysis Report</h3>
+<button class="export-button" @onclick="ExportToPdf">Export to PDF</button>
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using GrapeCity.Documents.Pdf;
