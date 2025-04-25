@@ -18,6 +18,16 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+<div class="d-flex align-items-center gap-2 flex-wrap text-center">
+    <input type="checkbox" class="form-check-input" id="myCheckbox">
+    <label class="form-check-label me-3" for="myCheckbox">Checkbox</label>
+
+    <button class="btn btn-primary">Add Service</button>
+    <button class="btn btn-success">Update Unit Pricing</button>
+    <button class="btn btn-warning text-dark">Reset To Initial Values</button>
+    <button class="btn btn-info text-white">Print</button>
+    <button class="btn btn-danger">Undo Current Changes</button>
+  </div>
 ===========================================================================================================
 @inherits AnalysisBase
 @inject IJSRuntime JS
