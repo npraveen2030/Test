@@ -14,6 +14,77 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace YourNamespace
+{
+    public class AdjustedElementDataModel
+    {
+        public string Element { get; set; }
+        public string PRReportName { get; set; }
+        public string PRName { get; set; }
+        public string LongName { get; set; }
+        public string AfpCode { get; set; }
+        public decimal StandardPrice { get; set; }
+        public int Tier1Volume { get; set; }
+        public decimal Tier2Price { get; set; }
+        public int Tier2Volume { get; set; }
+        public decimal Tier3Price { get; set; }
+        public int CampaignId { get; set; }
+        public bool AlwaysShow { get; set; }
+        public decimal Cost { get; set; }
+        public string PcdElement { get; set; }
+        public decimal CompPrice { get; set; }
+        public decimal UnitPrice { get; set; }
+        public int Volume { get; set; }
+        public int ElementID { get; set; }
+        public char ChargeClass { get; set; }
+        public char TieredType { get; set; }
+        public int Tier { get; set; }
+        public string KeyAccount { get; set; }
+        public int AnalysisId { get; set; }
+        public string BillingMethod { get; set; }
+        public string Description { get; set; }
+        public bool SetupFree { get; set; }
+    }
+
+    public static class AdjustedElementDataModelFactory
+    {
+        public static List<AdjustedElementDataModel> GenerateDummyData() =>
+            Enumerable.Range(1, 5).Select(i => new AdjustedElementDataModel
+            {
+                Element = $"Element{i}",
+                PRReportName = $"Report{i}",
+                PRName = $"PR{i}",
+                LongName = $"Long Name {i}",
+                AfpCode = $"AFP00{i}",
+                StandardPrice = 100m * i,
+                Tier1Volume = 10 * i,
+                Tier2Price = 90m * i,
+                Tier2Volume = 15 * i,
+                Tier3Price = 80m * i,
+                CampaignId = 120 + i,
+                AlwaysShow = i % 2 == 0,
+                Cost = 50m * i,
+                PcdElement = $"PCD00{i}",
+                CompPrice = 95m * i,
+                UnitPrice = 5m * i,
+                Volume = 500 * i,
+                ElementID = i,
+                ChargeClass = (char)('A' + (i - 1)),
+                TieredType = (i % 2 == 0) ? 'S' : 'T',
+                Tier = i,
+                KeyAccount = $"KeyAcc{i}",
+                AnalysisId = 100823,
+                BillingMethod = (i % 2 == 0) ? "Quarterly" : "Monthly",
+                Description = $"Sample description {i}",
+                SetupFree = i % 2 != 0
+            }).ToList();
+    }
+}
+
 ===========================================================================================================
 @page "/employeeform"
 @using System.ComponentModel.DataAnnotations
