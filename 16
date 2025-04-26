@@ -13,6 +13,15 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+var campaigns = new List<Campaign>
+{
+    new Campaign { TierId = 7, Id = 6, CampaignName = "Electronic Bil Payment Pricing Campaign", Ecr = 0, Ncr = 8.3m, TierMinBalance = 0, Message = "0" },
+    new Campaign { TierId = 19, Id = 3, CampaignName = "Mortgage Warehouse Lending", Ecr = 2, Ncr = 9.3m, TierMinBalance = 50000, Message = "0" },
+    new Campaign { TierId = 1, Id = 1, CampaignName = "Property Management", Ecr = 0, Ncr = 7m, TierMinBalance = 0, Message = "0" },
+    new Campaign { TierId = 8, Id = 5, CampaignName = "Small Business Business Banking", Ecr = 0, Ncr = 8.3m, TierMinBalance = 0, Message = "0" },
+    new Campaign { TierId = 2, Id = 2, CampaignName = "Title and Escrow Companies", Ecr = 0, Ncr = 7m, TierMinBalance = 0, Message = "0" }
+};
+
 ===========================================================================================================
 using System;
 using System.Collections.Generic;
