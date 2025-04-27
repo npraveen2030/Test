@@ -11,6 +11,62 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class AdjustedAnalysisDataModel
+{
+    public decimal CustomerName { get; set; }
+    public decimal NoOfAccount { get; set; }
+    public string ChargeClass { get; set; }
+    public string KeyAccounts { get; set; }
+    public string ProductCode { get; set; }
+    public bool Include { get; set; }
+    public int ID { get; set; }
+    public string BillingMethod { get; set; }
+    public decimal Ecr { get; set; }
+    public decimal NegativeCollectedRate { get; set; }
+    public decimal PositiveCollectedBalance { get; set; }
+    public decimal NegativeCollectedBalance { get; set; }
+    public decimal AvgLedgerBalance { get; set; }
+    public decimal AvgCollectedBalance { get; set; }
+    public string ExceptionSetName { get; set; }
+    public string ExceptionExpiration { get; set; }
+    public bool UseStandardEcr { get; set; }
+    public bool EcrOnlyChange { get; set; }
+    public string RateChangeType { get; set; }
+}
+
+public static class DummyAnalysisDataGenerator
+{
+    public static List<AdjustedAnalysisDataModel> GenerateDummyAdjustedAnalysisData()
+    {
+        return Enumerable.Range(1, 5).Select(i => new AdjustedAnalysisDataModel
+        {
+            CustomerName = 1000 + i,
+            NoOfAccount = 50 + i,
+            ChargeClass = "A",
+            KeyAccounts = $"KeyAccount_{i}",
+            ProductCode = $"Product_{i}",
+            Include = i % 2 == 0,
+            ID = 100823, // Fixed as you asked
+            BillingMethod = "Monthly",
+            Ecr = 1.5m + i,
+            NegativeCollectedRate = 0.5m + i,
+            PositiveCollectedBalance = 5000.0m + i,
+            NegativeCollectedBalance = -1000.0m - i,
+            AvgLedgerBalance = 15000.0m + i,
+            AvgCollectedBalance = 14500.0m + i,
+            ExceptionSetName = $"Exception_{i}",
+            ExceptionExpiration = DateTime.Now.AddMonths(i).ToString("yyyy-MM-dd"),
+            UseStandardEcr = i % 2 == 1,
+            EcrOnlyChange = i % 2 == 0,
+            RateChangeType = i % 2 == 0 ? "Increase" : "Decrease"
+        }).ToList();
+    }
+}
+
 ===========================================================================================================
 public static List<AdjustedElementDataModel> GenerateDummyAdjustedElements()
     {
