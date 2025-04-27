@@ -12,6 +12,39 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+public static List<AdjustedElementDataModel> GenerateDummyAdjustedElements()
+    {
+        return Enumerable.Range(1, 5).Select(i => new AdjustedElementDataModel
+        {
+            Element = $"Element_{i}",
+            PRReportName = $"PRReport_{i}",
+            PRName = $"PRName_{i}",
+            LongName = $"LongName_{i}",
+            AfpCode = $"Afp_{i}",
+            StandardPrice = 100.0m + i,
+            Tier1Volume = 10 * i,
+            Tier2Price = 50.0m + i,
+            Tier2Volume = 20 * i,
+            Tier3Price = 75.0m + i,
+            ComaignId = 2000 + i,
+            AlwaysShow = i % 2 == 0,
+            Cost = 500.0m + i,
+            PcdElement = $"PcdElement_{i}",
+            CompPrice = 250.0m + i,
+            UnitPrice = 20.0m + i,
+            Volume = 100 * i,
+            ElementID = 3000 + i,
+            ChargeClass = 'A',
+            TieredType = 'B',
+            Tier = i,
+            KeyAccount = $"KeyAccount_{i}",
+            AnalysisId = 100823, // Fixed as per your instruction
+            BillingMethod = "Monthly",
+            Description = $"Description_{i}",
+            SetupFree = i % 2 == 1,
+            PositiveCollectedBalance = 1000.0m + i
+        }).ToList();
+    }
 ===========================================================================================================
 var campaigns = new List<Campaign>
 {
