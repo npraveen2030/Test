@@ -7,6 +7,101 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+@page "/people-grid"
+@using System.ComponentModel.DataAnnotations
+
+@inject ILogger<PeopleGrid> Logger
+
+<PageTitle>People Grid</PageTitle>
+
+<h3>People List</h3>
+
+<RadzenDataGrid TItem="Person" Data="@people" @ref="grid" Editable="true" EditMode="DataGridEditMode.Cell">
+    <Columns>
+        <RadzenDataGridColumn TItem="Person" Property="chkSelect" Title="Select" Width="70px">
+            <Template Context="data">
+                <RadzenCheckBox @bind-Value="data.chkSelect" TValue="bool" />
+            </Template>
+        </RadzenDataGridColumn>
+
+        <RadzenDataGridColumn TItem="Person" Property="Name" Title="Name">
+            <Template Context="data">
+                <RadzenTextBox @bind-Value="data.Name" Style="width:100%" />
+            </Template>
+        </RadzenDataGridColumn>
+
+        <RadzenDataGridColumn TItem="Person" Property="Age" Title="Age">
+            <Template Context="data">
+                <RadzenNumeric TValue="int" @bind-Value="data.Age" Style="width:100%" />
+            </Template>
+        </RadzenDataGridColumn>
+    </Columns>
+</RadzenDataGrid>
+
+<br />
+
+<RadzenButton Text="Save Changes" Click="@SaveChanges" Style="margin-top:10px" Icon="save" />
+
+@code {
+    private RadzenDataGrid<Person> grid;
+    private List<Person> people = new();
+    private List<Person> originalPeople = new();
+    private Dictionary<int, Person> originalPeopleDict = new();
+
+    protected override void OnInitialized()
+    {
+        // Simulate loading from DB
+        originalPeople = new List<Person>
+        {
+            new Person { Id = 1, chkSelect = false, Name = "John", Age = 30 },
+            new Person { Id = 2, chkSelect = true, Name = "Alice", Age = 25 },
+            new Person { Id = 3, chkSelect = false, Name = "Bob", Age = 40 }
+        };
+
+        // Make a deep copy for editing
+        people = originalPeople.Select(p => new Person
+        {
+            Id = p.Id,
+            chkSelect = p.chkSelect,
+            Name = p.Name,
+            Age = p.Age
+        }).ToList();
+
+        // Optional: Dictionary for faster lookup
+        originalPeopleDict = originalPeople.ToDictionary(x => x.Id);
+    }
+
+    private void SaveChanges()
+    {
+        var modifiedRows = people.Where(current =>
+        {
+            if (!originalPeopleDict.TryGetValue(current.Id, out var original))
+                return false;
+
+            return original.chkSelect != current.chkSelect ||
+                   original.Name != current.Name ||
+                   original.Age != current.Age;
+        }).ToList();
+
+        Logger.LogInformation($"Modified Rows Count = {modifiedRows.Count}");
+
+        foreach (var row in modifiedRows)
+        {
+            Logger.LogInformation($"Id={row.Id}, Name={row.Name}, Age={row.Age}, chkSelect={row.chkSelect}");
+        }
+
+        // TODO: Call API / DB Save logic here with modifiedRows
+    }
+
+    public class Person
+    {
+        public int Id { get; set; }
+        public bool chkSelect { get; set; }
+        public string Name { get; set; }
+        public int Age { get; set; }
+    }
+}
+
 ===========================================================================================================
 @page "/people-grid"
 @using System.ComponentModel.DataAnnotations
