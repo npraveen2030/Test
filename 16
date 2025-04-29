@@ -6,6 +6,40 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+@inject CategoryService categoryService
+
+<RadzenDropDown
+    Data="@categories"
+    TextProperty="Name"
+    ValueProperty="Id"
+    FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+    AllowFiltering="true"
+    Placeholder="Select Category"
+    Change="@OnCategoryChange"
+    @bind-Value="@selectedCategoryId"
+    Filter="@OnFilter" />
+
+@code {
+    private List<Category> categories = new();
+    private int? selectedCategoryId;
+
+    protected override async Task OnInitializedAsync()
+    {
+        categories = await categoryService.GetCategoriesAsync();
+    }
+
+    private async Task OnFilter(string value)
+    {
+        categories = await categoryService.GetCategoriesAsync(value);
+    }
+
+    private void OnCategoryChange(object value)
+    {
+        selectedCategoryId = (int?)value;
+        // You can perform further actions here
+    }
+}
+
 ===========================================================================================================
 @page "/people-grid"
 @using System.ComponentModel.DataAnnotations
