@@ -4,6 +4,105 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Employee
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public decimal Salary { get; set; }
+}
+
+public class Client
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public decimal Salary { get; set; }
+    public DateTime DOB { get; set; }
+    public string Pincode { get; set; }
+}
+
+public class StandardAnalysisRateResDto
+{
+    public int Id { get; set; }
+    public int ModelId { get; set; }
+    public decimal Ecr { get; set; }
+    public int Ncr { get; set; }
+    public string PublicNowSubProduct { get; set; }
+    public int CbNcr { get; set; }
+    public decimal CbEcr { get; set; }
+    public decimal FedFundsRate { get; set; }
+    public int MinBalance { get; set; }
+    public int CorMinBalance { get; set; }
+    public int RateExpirationPeriod { get; set; }
+    public DateTime? RateInterestDate { get; set; }
+    public int PricingExpirationPeriod { get; set; }
+}
+
+public class Program
+{
+    public static List<dynamic> GetListByType(Type type)
+    {
+        if (type == typeof(Employee))
+        {
+            return Enumerable.Range(1, 5)
+                .Select(i => (dynamic)new Employee
+                {
+                    Name = $"Employee {i}",
+                    Age = 25 + i,
+                    Salary = 30000 + i * 1000
+                }).ToList();
+        }
+        else if (type == typeof(Client))
+        {
+            return Enumerable.Range(1, 5)
+                .Select(i => (dynamic)new Client
+                {
+                    Name = $"Client {i}",
+                    Age = 30 + i,
+                    Salary = 40000 + i * 1500,
+                    DOB = DateTime.Now.AddYears(-30 - i),
+                    Pincode = $"1000{i}"
+                }).ToList();
+        }
+        else if (type == typeof(StandardAnalysisRateResDto))
+        {
+            return Enumerable.Range(1, 5)
+                .Select(i => (dynamic)new StandardAnalysisRateResDto
+                {
+                    Id = i,
+                    ModelId = 100 + i,
+                    Ecr = 2.5m + i,
+                    Ncr = 10 + i,
+                    PublicNowSubProduct = $"Product {i}",
+                    CbNcr = 5 + i,
+                    CbEcr = 1.5m + i,
+                    FedFundsRate = 4.25m + i,
+                    MinBalance = 1000 * i,
+                    CorMinBalance = 500 * i,
+                    RateExpirationPeriod = 90 + i,
+                    RateInterestDate = DateTime.Today.AddDays(i),
+                    PricingExpirationPeriod = 180 + i
+                }).ToList();
+        }
+
+        return new List<dynamic>();
+    }
+
+    public static void Main()
+    {
+        var analysisRates = GetListByType(typeof(StandardAnalysisRateResDto));
+
+        Console.WriteLine("StandardAnalysisRateResDto:");
+        foreach (var item in analysisRates)
+        {
+            Console.WriteLine($"Id: {item.Id}, ECR: {item.Ecr}, NCR: {item.Ncr}, Product: {item.PublicNowSubProduct}");
+        }
+    }
+}
+
 ===========================================================================================================
 using System;
 using System.Collections.Generic;
