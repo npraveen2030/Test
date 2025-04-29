@@ -5,6 +5,55 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class StandardAnalysisRateResDto
+{
+    public int Id { get; set; }
+    public int ModelId { get; set; }
+    public decimal Ecr { get; set; }
+    public int Ncr { get; set; }
+    public string PublicNowSubProduct { get; set; }
+    public int CbNcr { get; set; }
+    public decimal CbEcr { get; set; }
+    public decimal FedFundsRate { get; set; }
+    public int MinBalance { get; set; }
+    public int CorMinBalance { get; set; }
+    public int RateExpirationPeriod { get; set; }
+    public DateTime? RateInterestDate { get; set; }
+    public int PricingExpirationPeriod { get; set; }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        var dummyData = Enumerable.Range(1, 5).Select(i => new StandardAnalysisRateResDto
+        {
+            Id = i,
+            ModelId = 100823,
+            Ecr = 0.3m + (i * 0.01m),
+            Ncr = 120000,
+            PublicNowSubProduct = "TE",
+            CbNcr = 11,
+            CbEcr = 3.15m,
+            FedFundsRate = 4.86m,
+            MinBalance = 250000,
+            CorMinBalance = 5000 + (i * 100),
+            RateExpirationPeriod = 10,
+            RateInterestDate = null,
+            PricingExpirationPeriod = 6
+        }).ToList();
+
+        foreach (var item in dummyData)
+        {
+            Console.WriteLine($"Id: {item.Id}, ModelId: {item.ModelId}, Ecr: {item.Ecr}, CorMinBalance: {item.CorMinBalance}");
+        }
+    }
+}
+
 ===========================================================================================================
 @inject CategoryService categoryService
 
