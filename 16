@@ -14,6 +14,64 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+@page "/checkboxlist"
+
+<h3>Checkbox List</h3>
+
+@foreach (var item in CheckboxItems)
+{
+    <div>
+        <input type="checkbox"
+               checked="@item.IsChecked"
+               @onchange="(e) => OnCheckboxClick(item, e)"
+               disabled="@(!item.IsEnabled)" />
+        <label>@item.Text (@item.Value)</label>
+    </div>
+}
+
+<button @onclick="Submit">Submit</button>
+
+@if (SelectedItems.Any())
+{
+    <h4>Selected Items:</h4>
+    <ul>
+        @foreach (var selected in SelectedItems)
+        {
+            <li>@selected.Text (@selected.Value)</li>
+        }
+    </ul>
+}
+
+@code {
+    public class CheckboxItem
+    {
+        public string Text { get; set; }
+        public string Value { get; set; }
+        public bool IsChecked { get; set; }
+        public bool IsEnabled { get; set; }
+    }
+
+    private List<CheckboxItem> CheckboxItems = new List<CheckboxItem>
+    {
+        new CheckboxItem { Text = "Apple", Value = "1", IsChecked = false, IsEnabled = true },
+        new CheckboxItem { Text = "Mango", Value = "2", IsChecked = true, IsEnabled = false },
+        new CheckboxItem { Text = "Banana", Value = "3", IsChecked = false, IsEnabled = true }
+    };
+
+    private List<CheckboxItem> SelectedItems = new();
+
+    private void OnCheckboxClick(CheckboxItem item, ChangeEventArgs e)
+    {
+        item.IsChecked = (bool)e.Value;
+        Console.WriteLine($"Clicked: {item.Text}, Checked: {item.IsChecked}");
+    }
+
+    private void Submit()
+    {
+        SelectedItems = CheckboxItems.Where(x => x.IsChecked).ToList();
+    }
+}
+
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
