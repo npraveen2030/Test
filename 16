@@ -13,6 +13,62 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+@page "/checkboxlist"
+
+<h3>Checkbox List Example</h3>
+
+@foreach (var item in Items)
+{
+    <div>
+        <input type="checkbox"
+               checked="@item.Selected"
+               @onchange="(e) => OnCheckboxChanged(item, e)"
+               disabled="@(!item.Enabled)" />
+        <label>@item.Text</label>
+    </div>
+}
+
+<button @onclick="ShowSelected">Show Selected</button>
+
+@if (SelectedItems.Any())
+{
+    <h4>Selected Items:</h4>
+    <ul>
+        @foreach (var selected in SelectedItems)
+        {
+            <li>@selected.Text</li>
+        }
+    </ul>
+}
+
+@code {
+    public class CheckboxItem
+    {
+        public string Text { get; set; }
+        public bool Enabled { get; set; }
+        public bool Selected { get; set; }
+    }
+
+    private List<CheckboxItem> Items = new List<CheckboxItem>
+    {
+        new CheckboxItem { Text = "Apple", Enabled = true, Selected = false },
+        new CheckboxItem { Text = "Mango", Enabled = false, Selected = true },
+        new CheckboxItem { Text = "Banana", Enabled = true, Selected = false }
+    };
+
+    private List<CheckboxItem> SelectedItems = new();
+
+    private void OnCheckboxChanged(CheckboxItem item, ChangeEventArgs e)
+    {
+        item.Selected = (bool)e.Value;
+    }
+
+    private void ShowSelected()
+    {
+        SelectedItems = Items.Where(i => i.Selected).ToList();
+    }
+}
+
 ===========================================================================================================
 @page "/checkboxlist"
 
