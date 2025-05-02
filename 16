@@ -11,6 +11,53 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+@page "/checkbox-service"
+
+<h3>Select Service(s):</h3>
+
+<div>
+    <label>
+        <input type="checkbox" checked="@isCurrentService"
+               @onchange="(e) => OnCheckboxChanged(e, "Current Service")" />
+        Current Service
+    </label>
+
+    <label style="margin-left: 20px;">
+        <input type="checkbox" checked="@isNewService"
+               @onchange="(e) => OnCheckboxChanged(e, "New Service")" />
+        New Service
+    </label>
+</div>
+
+<p>You selected:</p>
+<ul>
+    @if (isCurrentService)
+    {
+        <li>Current Service</li>
+    }
+    @if (isNewService)
+    {
+        <li>New Service</li>
+    }
+</ul>
+
+@code {
+    private bool isCurrentService = false;
+    private bool isNewService = false;
+
+    private void OnCheckboxChanged(ChangeEventArgs e, string serviceName)
+    {
+        bool isChecked = (bool)e.Value;
+
+        if (serviceName == "Current Service")
+            isCurrentService = isChecked;
+        else if (serviceName == "New Service")
+            isNewService = isChecked;
+
+        Console.WriteLine($"Checkbox changed: {serviceName}, Checked: {isChecked}");
+    }
+}
+
 ===========================================================================================================
 @page "/checkbox-service"
 
