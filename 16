@@ -10,6 +10,508 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+@page "/fixegrid" 
+
+@inject NavigationManager NavigationManager
+
+<h3>Shopping Cart</h3>
+
+<RadzenDataGrid @ref="grid"
+                Data="@cartItems"
+                TItem="Cart"
+                class="fixed-header-grid"
+                RowHeight="40"
+                Style="height: 400px;">
+    <Columns>
+        <RadzenDataGridColumn TItem="Cart" Property="Book.Title" Title="Title" />
+        <RadzenDataGridColumn TItem="Cart" Property="Book.Price" Title="Price (₹)" />
+        <RadzenDataGridColumn TItem="Cart" Property="Quantity" Title="Quantity" />
+        <RadzenDataGridColumn TItem="Cart" Title="Total (₹)">
+            <Template Context="item">
+                ₹@(item.Book.Price * item.Quantity)
+            </Template>
+        </RadzenDataGridColumn>
+    </Columns>
+</RadzenDataGrid>
+
+@code {
+    private RadzenDataGrid<Cart> grid;
+
+    private List<Cart> cartItems = new()
+    {
+        new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }, new Cart
+        {
+            Book = new Book { Title = "Blazor in Action", Price = 500, ImageUrl = "book1.jpg" },
+            Quantity = 2
+        },
+        new Cart
+        {
+            Book = new Book { Title = "ASP.NET Core Fundamentals", Price = 750, ImageUrl = "book2.jpg" },
+            Quantity = 1
+        }
+    };
+
+    public class Cart
+    {
+        public int Quantity { get; set; }
+        public Book Book { get; set; } = new();
+    }
+
+    public class Book
+    {
+        public string Title { get; set; }
+        public decimal Price { get; set; }
+        public string ImageUrl { get; set; }
+    }
+
+}
+
+<style>
+    .fixed-header-grid .rz-datatable-scrollable-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background-color: white;
+    }
+
+    .fixed-header-grid .rz-datatable-scrollable-body {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+</style>
+
 ===========================================================================================================
 @page "/checkbox-service"
 
