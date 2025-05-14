@@ -9,6 +9,137 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+<style>
+  .form-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 80px;
+    padding: 10px;
+  }
+
+  .left-controls,
+  .right-controls {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .form-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+ .form-row .left-controls .form-group:nth-child(1) label {
+    width: 160px; /* 👈 fixed width for labels */
+    white-space: nowrap;
+    font-weight: 500;
+    text-align: right;
+    background-color: red;
+  }
+ .form-row .left-controls .form-group:nth-child(2) label  {
+    width: 120px; /* 👈 fixed width for labels */
+    white-space: nowrap;
+    font-weight: 500;
+    text-align: right;
+    background-color: yellow;
+  }
+
+  select,
+  input[type="datetime-local"] {
+    padding: 5px;
+    width: 120px;
+  }
+
+  input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-left: 5px;
+  }
+</style>
+
+<div class="col-12">
+  <div class="form-row">
+    <!-- Left aligned controls -->
+    <div class="left-controls">
+      <div class="form-group">
+        <label>Proposed Pricing Waved:</label>
+        <select>
+          <option>Product 1</option>
+          <option>Product 2</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Compaign Pricing:</label>
+        <select>
+          <option>Category A</option>
+          <option>Category B</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Right aligned controls -->
+    <div class="right-controls">
+      <div class="form-group">
+        <label>Start Date:</label>
+        <input type="datetime-local" />
+      </div>
+
+      <div class="form-group">
+        <label>End Date:</label>
+        <input type="datetime-local" />
+      </div>
+
+      <div class="form-group">
+        <label for="chkValid">Is Valid</label>
+        <input type="checkbox" id="chkValid" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-12">
+  <div class="form-row">
+    <!-- Left aligned controls -->
+    <div class="left-controls">
+      <div class="form-group">
+        <label>Current Pricing Waved:</label>
+        <select>
+          <option>Product 1</option>
+          <option>Product 2</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Contract Pricing:</label>
+        <select>
+          <option>Category A</option>
+          <option>Category B</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Right aligned controls -->
+    <div class="right-controls">
+      <div class="form-group">
+        <label>Start Date:</label>
+        <input type="datetime-local" />
+      </div>
+
+      <div class="form-group">
+        <label>End Date:</label>
+        <input type="datetime-local" />
+      </div>
+
+      <div class="form-group">
+        <label for="chkValid2">Is Valid</label>
+        <input type="checkbox" id="chkValid2" />
+      </div>
+    </div>
+  </div>
+</div>
+
 ===========================================================================================================
 @page "/fixegrid" 
 
