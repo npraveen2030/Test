@@ -5,6 +5,19 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+<RadzenNumeric @bind-Value="@numberValue"
+               TValue="int?"
+               Placeholder="Enter up to 8 digits"
+               InputAttributes="@inputAttributes"
+               Style="width:200px" />
+			       int? numberValue { get; set; }
+
+    Dictionary<string, object> inputAttributes = new()
+{
+    { "maxlength", "8" },
+    { "oninput", "this.value = this.value.replace(/[^0-9]/g, '').slice(0,8);" }
+};
+
 ===========================================================================================================
 <InputText @bind-Value="@numberText"
            maxlength="8"
