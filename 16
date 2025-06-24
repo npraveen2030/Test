@@ -6,6 +6,17 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+<InputText @bind-Value="@numberText"
+           maxlength="8"
+           oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+           Placeholder="Enter up to 8 digits"
+           style="width:200px;" />
+<InputText @bind-Value="@decimalText"
+           maxlength="19" 
+           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'); limitDecimal(this, 13, 5);"
+           Placeholder="Enter number (max 13 digits, 5 decimals)"
+           style="width:220px;" />
+
 ===========================================================================================================
 @if (showConfirm)
 {
