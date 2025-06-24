@@ -4,6 +4,23 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+
+<RadzenNumeric @bind-Value="@decimalValue"
+               TValue="decimal?"
+               Step="0.00001"
+               Placeholder="Enter up to 13 total digits, 5 decimals"
+               InputAttributes="@decimalAttributes"
+               Style="width:220px" />
+			   
+ decimal? decimalValue { get; set; }
+
+    Dictionary<string, object> decimalAttributes = new()
+    {
+        { "maxlength", "19" }, // Total max characters with dot and decimals
+        { "oninput", "this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\\..*)\\./g, '$1'); limitDecimal(this, 13, 5);" }
+    };
+
+
 ===========================================================================================================
 <RadzenNumeric @bind-Value="@numberValue"
                TValue="int?"
