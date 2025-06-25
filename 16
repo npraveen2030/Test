@@ -3,6 +3,65 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+<script>
+    function convertToDecimal(el, totalDigits, decimalPlaces) {
+        let raw = el.value.replace(/[^0-9]/g, ''); // Keep only numbers
+
+        let integerPart = raw.substring(0, totalDigits);
+        let decimalPart = raw.substring(totalDigits, totalDigits + decimalPlaces);
+
+        if (decimalPart.length > 0) {
+            el.value = integerPart + "." + decimalPart;
+        } else {
+            el.value = integerPart;
+        }
+    } function formatDecimalInput(el, totalDigits, decimalPlaces) {
+        let raw = el.value.replace(/[^0-9]/g, ''); // Allow only digits
+
+        let integerPart = raw.substring(0, totalDigits);
+        let decimalPart = raw.substring(totalDigits, totalDigits + decimalPlaces);
+
+        if (decimalPart.length > 0) {
+            el.value = integerPart + "." + decimalPart;
+        } else {
+            el.value = integerPart;
+        }
+    }
+</script>
+
+
+<RadzenNumeric @bind-Value="@numberValue"
+               TValue="int?"
+               Placeholder="Enter up to 8 digits"
+               InputAttributes="@inputAttributes"
+               Style="width:200px" />
+
+<InputText @bind-Value="@decimalText"
+           maxlength="19"
+           oninput="convertToDecimal(this, 13, 5)"
+           Placeholder="Enter number (13 total digits, 5 decimals)"
+           style="width:220px;" />
+<RadzenNumeric @bind-Value="@decimalValue"
+               TValue="decimal?"
+               Step="0.00001"
+               Placeholder="Enter number (13 total digits, 5 decimals)"
+               InputAttributes="@decimalAttributes"
+               Style="width:220px" />
+
+    int? numberValue { get; set; }
+
+    Dictionary<string, object> inputAttributes = new()
+{
+    { "maxlength", "8" },
+    { "oninput", "this.value = this.value.replace(/[^0-9]/g, '').slice(0,8);" }
+}; string decimalText { get; set; }
+
+    decimal? decimalValue { get; set; }
+
+    Dictionary<string, object> decimalAttributes = new()
+{
+    { "oninput", "formatDecimalInput(this, 13, 5);" }
+};
 ===========================================================================================================
 
 <RadzenNumeric @bind-Value="@decimalValue"
