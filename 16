@@ -11,6 +11,22 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+/* wrapper: border, rounding, etc. */
+.price-select.rz-state-disabled {
+    background: red; /* fills the whole box */
+    border: 2px solid red;
+}
+
+    /* text area (the part Radzen calls .rz-dropdown-label) */
+    .price-select.rz-state-disabled .rz-dropdown-label {
+        background: red !important; /* beat the theme’s grey */
+        color: white !important;
+    }
+
+    /* arrow icon */
+    .price-select.rz-state-disabled .rz-dropdown-trigger-icon {
+        color: white !important;
+    }
 ===========================================================================================================
 function formatDecimalInput(el, maxIntDigits = 16, maxDecDigits = 2) {
     // 1 – sanitise
