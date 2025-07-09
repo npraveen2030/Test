@@ -9,6 +9,37 @@
 ===========================================================================================================
 ===========================================================================================================
 ===========================================================================================================
+function showModal(modalId) {
+    const modalEl = document.querySelector(modalId);
+    const myModal = new bootstrap.Modal(modalEl);
+    myModal.show();
+
+    // Disable scroll
+    document.documentElement.style.overflow = 'hidden';
+
+    // Check if the modal has a static backdrop
+    if (modalEl.getAttribute('data-bs-backdrop') === 'static') {
+        // Remove the backdrop "shake" animation on outside click
+        const handleClick = (e) => {
+            if (e.target === modalEl) {
+                e.stopPropagation(); // Prevents triggering the animation
+            }
+        };
+
+        // Attach the event once
+        modalEl.addEventListener('click', handleClick);
+
+        // Optional: clean up the event listener when modal is hidden
+        modalEl.addEventListener('hidden.bs.modal', () => {
+            modalEl.removeEventListener('click', handleClick);
+        });
+
+        // Also remove 'modal-static' class if it gets added
+        modalEl.addEventListener('hidePrevented.bs.modal', () => {
+            modalEl.classList.remove('modal-static');
+        });
+    }
+}
 ===========================================================================================================
 showModal: (modalId) => {
      const myModal = new bootstrap.Modal(document.querySelector(modalId));
